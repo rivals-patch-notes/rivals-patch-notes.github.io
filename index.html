@@ -1,0 +1,985 @@
+﻿<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Marvel Rivals â€” True Net Patch Math (v20260710)</title>
+<style>
+  :root{
+    --bg:#F3F4F6; --card:#FFFFFF; --ink:#171C26; --muted:#5A6472; --line:#E2E6EC;
+    --accent:#A87F15; --accent-ink:#7A5C0E;
+    --buff:#177A45; --buff-bg:#E5F4EB; --buff-line:#BFE3CD;
+    --nerf:#BE3A36; --nerf-bg:#FBEAE8; --nerf-line:#F0CBC7;
+    --neut:#5E6774; --neut-bg:#EEF0F3; --neut-line:#D8DDE4;
+    --mono:ui-monospace,"Cascadia Mono","Segoe UI Mono",Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0D1015; --card:#151A21; --ink:#E9EDF3; --muted:#98A2B0; --line:#242B35;
+      --accent:#E9BE4B; --accent-ink:#E9BE4B;
+      --buff:#53C77E; --buff-bg:#122B1D; --buff-line:#1F4530;
+      --nerf:#E7776C; --nerf-bg:#331917; --nerf-line:#512823;
+      --neut:#9AA3AF; --neut-bg:#1C222B; --neut-line:#2B333F;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0D1015; --card:#151A21; --ink:#E9EDF3; --muted:#98A2B0; --line:#242B35;
+    --accent:#E9BE4B; --accent-ink:#E9BE4B;
+    --buff:#53C77E; --buff-bg:#122B1D; --buff-line:#1F4530;
+    --nerf:#E7776C; --nerf-bg:#331917; --nerf-line:#512823;
+    --neut:#9AA3AF; --neut-bg:#1C222B; --neut-line:#2B333F;
+  }
+  :root[data-theme="light"]{
+    --bg:#F3F4F6; --card:#FFFFFF; --ink:#171C26; --muted:#5A6472; --line:#E2E6EC;
+    --accent:#A87F15; --accent-ink:#7A5C0E;
+    --buff:#177A45; --buff-bg:#E5F4EB; --buff-line:#BFE3CD;
+    --nerf:#BE3A36; --nerf-bg:#FBEAE8; --nerf-line:#F0CBC7;
+    --neut:#5E6774; --neut-bg:#EEF0F3; --neut-line:#D8DDE4;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:15px/1.55 system-ui,"Segoe UI",Roboto,sans-serif;
+    margin:0; padding:0 20px 64px;
+  }
+  .wrap{max-width:1120px; margin:0 auto}
+  header{padding:44px 0 8px}
+  .eyebrow{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent-ink); font-weight:600; margin:0 0 10px;
+  }
+  h1{font-size:clamp(26px,4.4vw,38px); font-weight:800; letter-spacing:-.02em; margin:0 0 8px; text-wrap:balance}
+  .sub{color:var(--muted); max-width:70ch; margin:0 0 20px}
+  /* summary strip */
+  .strip{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 28px}
+  .tile{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:12px 18px; min-width:132px;
+  }
+  .tile .n{font-family:var(--mono); font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; line-height:1.1}
+  .tile .l{font-size:12px; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; margin-top:2px}
+  .tile.buff .n{color:var(--buff)} .tile.nerf .n{color:var(--nerf)} .tile.neut .n{color:var(--neut)}
+  /* panels */
+  .panel{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:20px 22px; margin:0 0 18px}
+  .panel h2{font-size:16px; font-weight:800; letter-spacing:-.01em; margin:0 0 10px}
+  .panel p{margin:0 0 10px; max-width:88ch}
+  .panel p:last-child{margin-bottom:0}
+  .panel .k{font-family:var(--mono); font-size:13px; background:var(--neut-bg); border:1px solid var(--neut-line); border-radius:4px; padding:1px 6px; white-space:nowrap}
+  .conv{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px}
+  .conv span{font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums; background:var(--nerf-bg); border:1px solid var(--nerf-line); color:var(--nerf); border-radius:999px; padding:3px 11px}
+  /* legend */
+  .legend{display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-size:12.5px; color:var(--muted); margin:0 0 26px}
+  .dot{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px}
+  .dot.b{background:var(--buff)} .dot.r{background:var(--nerf)} .dot.g{background:var(--neut)}
+  /* role sections */
+  .role{margin:34px 0 14px; display:flex; align-items:center; gap:12px}
+  .role h2{font-size:20px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; margin:0}
+  .role::before{content:""; width:5px; height:22px; background:var(--accent); border-radius:2px}
+  .role .count{font-family:var(--mono); font-size:12px; color:var(--muted)}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:14px}
+  /* cards */
+  .card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; display:flex; flex-direction:column; gap:10px}
+  .card.buff{box-shadow:inset 3px 0 0 var(--buff)}
+  .card.nerf{box-shadow:inset 3px 0 0 var(--nerf)}
+  .card.neut{box-shadow:inset 3px 0 0 var(--neut)}
+  .card .top{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .card h3{font-size:16.5px; font-weight:800; letter-spacing:-.01em; margin:0}
+  .verdict{font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.1em; border-radius:999px; padding:3px 10px; white-space:nowrap}
+  .verdict.b{color:var(--buff); background:var(--buff-bg); border:1px solid var(--buff-line)}
+  .verdict.r{color:var(--nerf); background:var(--nerf-bg); border:1px solid var(--nerf-line)}
+  .verdict.g{color:var(--neut); background:var(--neut-bg); border:1px solid var(--neut-line)}
+  /* chip groups: base kit vs anchor/team-ups */
+  .grp{display:flex; flex-direction:column; gap:5px}
+  .glabel{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+  .divide{border-top:1px solid var(--line); margin:1px 0}
+  .chips{display:flex; flex-wrap:wrap; gap:6px}
+  .chip{
+    font-family:var(--mono); font-size:12px; font-variant-numeric:tabular-nums;
+    border-radius:999px; padding:3px 10px; border:1px solid;
+  }
+  .chip.b{color:var(--buff); background:var(--buff-bg); border-color:var(--buff-line)}
+  .chip.r{color:var(--nerf); background:var(--nerf-bg); border-color:var(--nerf-line)}
+  .chip.g{color:var(--neut); background:var(--neut-bg); border-color:var(--neut-line)}
+  .card p{margin:0; font-size:13.5px; color:var(--muted)}
+  .card p strong{color:var(--ink); font-weight:600}
+  /* ability tooltips */
+  .chip[data-ab]{text-decoration:underline dotted 1px; text-underline-offset:3px; cursor:help}
+  .ab{text-decoration:underline dotted 1px; text-underline-offset:2px; cursor:help; color:inherit}
+  #tip{
+    position:fixed; z-index:60; max-width:320px; display:none;
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:11px 13px; box-shadow:0 8px 26px rgba(0,0,0,.22);
+  }
+  #tip .th{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:3px}
+  #tip .tn{font-size:13.5px; font-weight:700; margin-bottom:4px; color:var(--ink)}
+  #tip .td{font-size:12.5px; line-height:1.5; color:var(--muted)}
+  #tip .ts{font-family:var(--mono); font-size:10.5px; color:var(--muted); margin-top:6px; opacity:.75}
+  footer{margin-top:44px; border-top:1px solid var(--line); padding-top:18px; font-size:12.5px; color:var(--muted)}
+  footer a{color:var(--accent-ink)}
+  footer ul{margin:6px 0 0; padding-left:18px}
+  @media (prefers-reduced-motion: no-preference){
+    .card{transition:border-color .15s ease}
+    .card:hover{border-color:var(--accent)}
+  }
+  /* edit mode */
+  .editbar{
+    position:fixed; right:16px; bottom:16px; z-index:50;
+    display:flex; gap:6px; align-items:center;
+    background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:6px 8px; box-shadow:0 4px 18px rgba(0,0,0,.18);
+  }
+  .editbar button{
+    font:600 12px/1 var(--mono); color:var(--ink);
+    background:var(--neut-bg); border:1px solid var(--neut-line); border-radius:999px;
+    padding:7px 12px; cursor:pointer;
+  }
+  .editbar button:hover{border-color:var(--accent)}
+  .editbar button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .editbar button.on{background:var(--buff-bg); border-color:var(--buff-line); color:var(--buff)}
+  .editbar .status{font:11.5px var(--mono); color:var(--muted); padding:0 6px; max-width:190px}
+  body.editing .wrap{outline:2px dashed var(--accent); outline-offset:10px; border-radius:8px}
+  body.editing .wrap [contenteditable]:focus{outline:none}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Marvel Rivals Â· Version 20260710 Â· Balance Post, July 2026</p>
+  <h1>True Net Patch Math â€” Anchor Rework Edition</h1>
+  <p class="sub">Every number below is the <strong>effective</strong> change: what a hero actually gains or loses versus last patch, where their Team-Up Anchor bonus was a permanent, always-on passive. Raw patch-note "buffs" that don't cover a removed anchor are shown as the nets they really are.</p>
+</header>
+
+<div class="strip">
+  <div class="tile buff"><div class="n">10</div><div class="l">Net buffed</div></div>
+  <div class="tile nerf"><div class="n">20</div><div class="l">Net nerfed</div></div>
+  <div class="tile neut"><div class="n">10</div><div class="l">Neutral / mixed</div></div>
+  <div class="tile"><div class="n">40</div><div class="l">Entries analyzed</div></div>
+</div>
+
+<div class="panel">
+  <h2>How the math works (verified)</h2>
+  <p><strong>Removing an anchor is a division, not a subtraction.</strong> A hero who had +X% and now has +0% keeps <span class="k">1 Ã· (1+X)</span> of their old output:</p>
+  <div class="conv"><span>+5% removed â†’ âˆ’4.8%</span><span>+10% removed â†’ âˆ’9.1%</span><span>+15% removed â†’ âˆ’13.0%</span></div>
+  <p><strong>Stacking rule.</strong> Community damage testing shows boosts on the <em>same target</em> stack <strong>additively</strong> (e.g. Luna ult + Mantis boost = 48%, not 51.2%). But a healer's <em>output</em> boost (the anchor) and a target's <em>healing-received</em> boost are different layers and <strong>multiply</strong>: heal Ã— (1+anchor) Ã— (1+received). NetEase publishes no official formula. Only Luna Snow has overlapping layers in this patch (her output boost Ã— her healing-received passive) â€” her card breaks the cases out; every other hero's number is identical either way.</p>
+  <p><strong>Anchor bonuses were unconditional.</strong> The Season Bonus was always active on the anchor hero â€” it never required the team-up partner to be on your team. So every red anchor-loss number below applies in <em>every single game</em>, not just partnered comps. The only changes that still depend on a specific partner are the named team-up abilities (Mantis's Healing Flower, Punisher with Daredevil, etc.).</p>
+  <p><strong>Conventions.</strong> Longer cooldowns and pricier ults are shown as reduced cast/ult frequency (12sâ†’15s = âˆ’20% casts). Health pools compare old total (base + anchor) to new total (base + regen shield). Inside each card, changes are split: <strong>Base kit</strong> above the line (ordinary balance tuning), <strong>Anchor &amp; team-ups</strong> below it. <span class="ab" tabindex="0" data-ab="orb-projection">Dotted ability names</span> carry tooltips â€” hover about a second (or keyboard-focus) for what the ability does, pulled from community wikis and baked into this page (the artifact sandbox blocks live web calls).</p>
+</div>
+
+<div class="panel">
+  <h2>Global changes (missing from the original analysis)</h2>
+  <div class="chips" style="margin-bottom:10px">
+    <span class="chip r">Vanguard/Duelist ult charge from damage âˆ’21.4%</span>
+    <span class="chip r">Strategist ult charge from healing âˆ’20.0%</span>
+    <span class="chip r">Strategist ult charge from damage âˆ’26.7%</span>
+    <span class="chip g">New: Regenerative Shields</span>
+  </div>
+  <p>Every role builds ultimates slower (damage-to-energy 70%â†’55% for Vanguards/Duelists; healing 75%â†’60% and damage 75%â†’55% for Strategists). Regenerative Shields count as base health for percentage effects and fully restore over 5s after 5s without taking damage â€” a real sustain upgrade for every converted hero.</p>
+</div>
+
+<div class="legend">
+  <span><span class="dot b"></span>Net buff</span>
+  <span><span class="dot r"></span>Net nerf</span>
+  <span><span class="dot g"></span>Neutral / tradeoff</span>
+  <span>Per card: <strong>Base kit</strong> â”€ line â”€ <strong>Anchor &amp; team-ups</strong></span>
+  <span>Dotted text = hover ~1s for ability info</span>
+</div>
+
+<!-- ============ STRATEGISTS ============ -->
+<div class="role"><h2>Strategists</h2><span class="count">10 entries</span></div>
+<div class="grid">
+
+<div class="card neut">
+  <div class="top"><h3>Adam Warlock</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b">Health +10%</span>
+      <span class="chip r" tabindex="0" data-ab="cosmic-cluster">Cosmic Cluster âˆ’7.9%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="quantum-magic">Ammo w/ Ultron +66.7%</span></div>
+  </div>
+  <p>No anchor to lose â€” this is a plain trade: 25 more HP for ~8% softer alt-fire. With Ultron on the team, <span class="ab" tabindex="0" data-ab="quantum-magic">Quantum Magic</span> ammo jumps 15â†’25.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>White Fox</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="spirit-sanctuary">Sanctuary casts âˆ’20%</span>
+      <span class="chip b" tabindex="0" data-ab="kumiho-unleashed">Ult health +33.3%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">All healing âˆ’9.1%</span></div>
+  </div>
+  <p>No heal was rebased, so losing the +10% anchor cuts everything she heals by 9.1%, and <span class="ab" tabindex="0" data-ab="spirit-sanctuary">Spirit Sanctuary</span> comes up 20% less often. <span class="ab" tabindex="0" data-ab="kumiho-unleashed">Kumiho Unleashed</span> getting 900â†’1200 HP is her only real win.</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Mantis</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">General healing âˆ’9.1%</span>
+      <span class="chip b" tabindex="0" data-ab="healing-flower">Flower w/ Star-Lord +36.4%</span>
+      <span class="chip b" tabindex="0" data-ab="natures-favor">Self-heal w/ Adam +27.3%</span>
+    </div>
+  </div>
+  <p>Her baseline healing is 9.1% lower across the board in every game. The partner-specific team-ups over-compensate where they apply: <span class="ab" tabindex="0" data-ab="healing-flower">Healing Flower</span>'s real value rises 11â†’15 with Star-Lord and self-healing goes 13.75â†’17.5/s with Adam Warlock.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Luna Snow</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="number-one-idol">Idol damage boost removed</span></div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">Healing output âˆ’13.0%</span>
+      <span class="chip b" tabindex="0" data-ab="number-one-idol">Healing received +9.1%</span>
+      <span class="chip r" tabindex="0" data-ab="number-one-idol">Self-heal net âˆ’5.1%</span>
+      <span class="chip g" tabindex="0" data-ab="idol-aura">Idol Aura share â‰ˆ flat (âˆ’0.6%)</span>
+    </div>
+  </div>
+  <p>Her healing output takes the full âˆ’13% anchor loss with nothing rebased. Wiki data pins <span class="ab" tabindex="0" data-ab="number-one-idol">Number One Idol</span> as a passive on Luna herself: the doubled boost is healing she <em>receives</em> (allies heal her 9.1% harder), while her self-heals still net âˆ’5.1% (1.15Ã—1.10 â†’ 1.20). <span class="ab" tabindex="0" data-ab="idol-aura">Share the Stage</span>'s share rebase (35%â†’40%) almost exactly cancels the anchor on the aura ally (âˆ’0.6%).</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Invisible Woman</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="orb-projection">Orb outgoing âˆ’3.4%</span>
+      <span class="chip g" tabindex="0" data-ab="orb-projection">Orb return âˆ’0.6%</span>
+      <span class="chip r">Other healing âˆ’13.0%</span>
+      <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Strange TU shield +150</span>
+    </div>
+  </div>
+  <p>The <span class="ab" tabindex="0" data-ab="orb-projection">Orb Projection</span> raises (45â†’50, 35â†’40) only claw back part of the lost +15% anchor; every heal that wasn't rebased drops the full 13%. Her team-up now grants Doctor Strange +150 shield.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Gambit</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="kinetic-cards">Kinetic Cards +2.0%</span>
+      <span class="chip r">Other healing âˆ’4.8%</span>
+    </div>
+  </div>
+  <p><span class="ab" tabindex="0" data-ab="kinetic-cards">Kinetic Cards</span> were slightly over-compensated (28â†’30 beats the lost 5%), but the rest of his healing quietly loses 4.8%.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Rocket Raccoon</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. frequency âˆ’7.0%</span>
+      <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. range falloff added</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="repair-mode">Repair orbs +4.8%</span>
+      <span class="chip r">Other healing âˆ’4.8%</span>
+    </div>
+  </div>
+  <p><span class="ab" tabindex="0" data-ab="repair-mode">Repair Mode</span> orbs come out ahead (52.5â†’55 effective), but other healing drops 4.8%, <span class="ab" tabindex="0" data-ab="cya">C.Y.A.</span> costs 7.5% more energy, and its effect now decays with distance (âˆ’60% by 20m).</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Cloak &amp; Dagger</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="lightforce-dagger">Dagger hits +8.7%</span>
+      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil âˆ’3.4%</span>
+      <span class="chip r" tabindex="0" data-ab="dagger-storm">Dagger Storm âˆ’3.4%</span>
+      <span class="chip r">Other healing âˆ’13.0%</span>
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psylocke TU crossbow +7.7%</span>
+    </div>
+  </div>
+  <p>Bread-and-butter <span class="ab" tabindex="0" data-ab="lightforce-dagger">dagger</span> healing is a real +8.7% even after the anchor loss, but the big cooldowns land 3.4% lower and anything unrebased drops 13%. Their team-up now buffs Psylocke's crossbow 13â†’14.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Deadpool <span style="font-weight:400;color:var(--muted)">(Strategist)</span></h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">All healing âˆ’4.8%</span></div>
+  </div>
+  <p>Nothing was rebased â€” the anchor removal is a clean 4.8% off all of his healing.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Ultron</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="imperative-firewall">Drone healing +11.1%</span>
+      <span class="chip b" tabindex="0" data-ab="quantum-magic">Adam ammo TU +66.7%</span>
+    </div>
+  </div>
+  <p><span class="ab" tabindex="0" data-ab="imperative-firewall">Firewall</span> drones go 30â†’35/s â€” an 11.1% real gain even after counting his old +5% anchor. His team-up now also hands Adam Warlock 10 extra rounds.</p>
+</div>
+</div>
+
+<!-- ============ VANGUARDS ============ -->
+<div class="role"><h2>Vanguards</h2><span class="count">12 entries</span></div>
+<div class="grid">
+
+<div class="card neut">
+  <div class="top"><h3>Angela</h3><span class="verdict g">NEUTRAL</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip g">Total pool Â±0% (550)</span>
+      <span class="chip b">200 HP now self-regens</span>
+    </div>
+  </div>
+  <p>Same 550 total, but 200 of it now self-regenerates after 5 seconds out of combat â€” the pool is unchanged and slightly better in practice.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Captain America</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">Total pool âˆ’14.3%</span>
+      <span class="chip b">300 HP now self-regens</span>
+    </div>
+  </div>
+  <p>The shield conversion doesn't cover both the âˆ’300 base HP and the lost 100-HP anchor: he's down 100 effective HP (700â†’600), though half his pool now self-recovers.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Peni Parker</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">âˆ’50 HP</span></div>
+  </div>
+  <p>Her 50-HP anchor bonus was removed with zero compensation elsewhere in her kit.</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Groot</h3><span class="verdict g">NEUTRAL</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip g">Total pool Â±0% (850)</span></div>
+  </div>
+  <p>+150 base HP exactly replaces the anchor bonus â€” same 850 total, just moved into base health.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Devil Dinosaur</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Crit damage taken âˆ’20%</span>
+      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Enemy ult charge off him âˆ’7.7%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip g">Total pool Â±0% (850)</span>
+      <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Elsa TU pellets +11.1%</span>
+    </div>
+  </div>
+  <p>Pool is unchanged at 850, and <span class="ab" tabindex="0" data-ab="prehistoric-plating">Prehistoric Plating</span> got real teeth: crits against him deal 20% less and enemies build 7.7% less ult energy off him.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Doctor Strange</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Shield +21.4%</span></div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">Effective HP âˆ’3.7%</span>
+      <span class="chip b">HP + shield total +9.1%</span>
+      <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">IW TU shield â†’ 1000</span>
+    </div>
+  </div>
+  <p>Slightly less personal HP once the anchor is counted (675â†’650), but the bigger <span class="ab" tabindex="0" data-ab="shield-of-the-seraphim">Seraphim shield</span> puts total mitigation up 9.1% â€” and Invisible Woman on the team pushes it to 1000.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Thor</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="hammer-throw">Hammer Throw +11.1%</span>
+      <span class="chip b" tabindex="0" data-ab="hammer-throw">Return hit +25%</span>
+      <span class="chip b">Bonus health on hit +50%</span>
+      <span class="chip g">Total pool Â±0% (600)</span>
+    </div>
+  </div>
+  <p>Damage, sustain, and <span class="ab" tabindex="0" data-ab="storm-surge">Storm Surge</span> mobility all up with no anchor to lose; half his pool converts to self-regenerating shield.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>The Thing</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="stone-haymaker">Haymaker bonus health +50%</span>
+      <span class="chip b" tabindex="0" data-ab="clobberin-time">Faster Clobberin' Time</span>
+      <span class="chip b" tabindex="0" data-ab="yancy-street-charge">Charge reliability up</span>
+    </div>
+  </div>
+  <p>Pure quality-of-life patch: 100â†’150 <span class="ab" tabindex="0" data-ab="stone-haymaker">Haymaker</span> padding, a quicker backswing, and a more forgiving <span class="ab" tabindex="0" data-ab="yancy-street-charge">Yancy Street Charge</span> hitbox.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Deadpool <span style="font-weight:400;color:var(--muted)">(Vanguard)</span></h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="dual-desert-eagles">Pistols +5.9% / +2.6%</span>
+      <span class="chip b" tabindex="0" data-ab="deadpool-n-your-area">Ally damage taken âˆ’6.3%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip g">Total pool Â±0% (500)</span></div>
+  </div>
+  <p>Damage and team damage-reduction both improve, and the +50 base HP fully replaces the lost anchor.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Hulk</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="heavy-blow">Heavy Blow +12.5%</span>
+      <span class="chip r" tabindex="0" data-ab="hulk-smash">Ult frequency âˆ’8.1%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">Total pool âˆ’6.7%</span></div>
+  </div>
+  <p><span class="ab" tabindex="0" data-ab="heavy-blow">Heavy Blow</span> hits harder, but he's down 50 effective HP (750â†’700) and <span class="ab" tabindex="0" data-ab="hulk-smash">Hulk Smash</span> takes 8% longer to build.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Rogue</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip r">Total pool âˆ’11.5%</span>
+      <span class="chip r" tabindex="0" data-ab="defensive-stance">Damage taken in stance +12.5%</span>
+      <span class="chip r" tabindex="0" data-ab="southern-brawl">Southern Brawl âˆ’16.7%</span>
+    </div>
+  </div>
+  <p>Nerfed on every axis, none of it anchor-related: 75 less total pool, <span class="ab" tabindex="0" data-ab="defensive-stance">Defensive Stance</span> blocks less, and <span class="ab" tabindex="0" data-ab="southern-brawl">Southern Brawl</span>'s bonus damage drops 90â†’75.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Venom</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">Total pool âˆ’9.1%</span>
+      <span class="chip b">250 HP now self-regens</span>
+    </div>
+  </div>
+  <p>Down 75 effective HP (825â†’750) once the lost 150-HP anchor is counted, partly offset by a third of his pool now self-regenerating.</p>
+</div>
+</div>
+
+<!-- ============ DUELISTS ============ -->
+<div class="role"><h2>Duelists</h2><span class="count">18 entries</span></div>
+<div class="grid">
+
+<div class="card neut">
+  <div class="top"><h3>Black Cat</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="maximum-fortune">Fortune cap +20%</span>
+      <span class="chip g">Total pool Â±0% (275)</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">All damage âˆ’4.8%</span></div>
+  </div>
+  <p>Everything hits 4.8% softer with the anchor gone, traded against a higher <span class="ab" tabindex="0" data-ab="maximum-fortune">Fortune</span> ceiling and a partly self-regenerating pool.</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Black Panther</h3><span class="verdict g">NEUTRAL</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip g">Total pool Â±0% (275)</span>
+      <span class="chip b">125 HP now self-regens</span>
+    </div>
+  </div>
+  <p>Damage untouched â€” 125 of his 275 pool just became regenerating shield, a small sustain gain.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Cyclops</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="cyclops-mobility">Mobility casts âˆ’20%</span></div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="optic-blast">Optic Blast âˆ’20.0%</span>
+      <span class="chip r" tabindex="0" data-ab="ricochet-force">Ricochet Force âˆ’16.7%</span>
+      <span class="chip r">Other damage âˆ’4.8%</span>
+    </div>
+  </div>
+  <p>Hardest-hit hero in the patch: both main damage numbers were cut below even their old un-anchored values, and both movement cooldowns come up 20% less often.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Daredevil</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips"><span class="chip g">Total pool Â±0% (300)</span></div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">All damage âˆ’4.8%</span>
+      <span class="chip b" tabindex="0" data-ab="adjudication">Punisher TU: his guns restored</span>
+    </div>
+  </div>
+  <p>Same pool with half converted to regen shield, but all damage drops 4.8%. His team-up now restores Punisher's pre-nerf gun damage.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Deadpool <span style="font-weight:400;color:var(--muted)">(Duelist)</span></h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">All damage âˆ’4.8%</span></div>
+  </div>
+  <p>Anchor removal only: everything hits 4.8% softer.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Elsa Bloodstone</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Ammo +50%</span>
+      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix casts âˆ’9.1%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Pellets w/ Devil Dino +11.1%</span></div>
+  </div>
+  <p>Fifty percent more shells per reload for one extra second on <span class="ab" tabindex="0" data-ab="helix-advance">Helix Advance</span> is a strong trade, and the Devil Dinosaur team-up adds 11% pellet damage.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Hawkeye</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Arrow speed +8.3%</span>
+      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Partial-charge damage up</span>
+      <span class="chip g">Max damage Â±0%</span>
+    </div>
+  </div>
+  <p>Faster arrows and better partial-charge scaling on <span class="ab" tabindex="0" data-ab="piercing-arrow">Piercing Arrow</span> with no anchor to lose; full-charge damage is unchanged.</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Hela</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="nightsword-thorn">Max-range damage +6.5%</span>
+      <span class="chip b" tabindex="0" data-ab="astral-flock">Free crow flight</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword âˆ’0.6%</span>
+      <span class="chip r">Other damage âˆ’13.0%</span>
+    </div>
+  </div>
+  <p>Her main shot was rebased almost perfectly (80.5â†’80 effective) and gains 6.5% at max falloff, but unrebased abilities lose the full 13% â€” traded for real mobility in <span class="ab" tabindex="0" data-ab="astral-flock">crow form</span>.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Human Torch</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">All damage âˆ’4.8%</span></div>
+  </div>
+  <p>No rebase anywhere, so losing the +5% anchor is a flat 4.8% off everything he does.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Iron Man</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="repulsor-blast">Repulsor field âˆ’14.3% / âˆ’13.4%</span>
+      <span class="chip r" tabindex="0" data-ab="armor-overdrive">Overdrive field âˆ’12.1%</span>
+      <span class="chip r" tabindex="0" data-ab="unibeam">Unibeam âˆ’9.8%</span>
+    </div>
+  </div>
+  <p>Cut below even his un-anchored values across the whole kit â€” a deliberate double nerf of 10â€“14% on everything he fires.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Magik</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b">Total pool +10% (275)</span>
+      <span class="chip b">125 HP now self-regens</span>
+    </div>
+  </div>
+  <p>One of the few straight survivability buffs: 25 more total pool, nearly half of it self-regenerating.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Moon Knight</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="hand-of-khonshu">Ult frequency âˆ’9.7%</span></div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="crescent-dart">Crescent Dart +3.5%</span>
+      <span class="chip r">Other damage âˆ’4.8%</span>
+    </div>
+  </div>
+  <p><span class="ab" tabindex="0" data-ab="crescent-dart">Darts</span> come out slightly ahead of the anchor loss, but the rest of his kit drops 4.8% and <span class="ab" tabindex="0" data-ab="hand-of-khonshu">Hand of Khonshu</span> charges ~10% slower.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Phoenix</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="endsong-inferno">Endsong explosion âˆ’2.6%</span>
+      <span class="chip r">Other damage âˆ’9.1%</span>
+    </div>
+  </div>
+  <p>The 140â†’150 "buff" doesn't cover her lost +10% anchor â€” the <span class="ab" tabindex="0" data-ab="endsong-inferno">Endsong Inferno</span> explosion nets âˆ’2.6% and unrebased damage drops 9.1%.</p>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Psylocke</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Crossbow +8.3%</span>
+      <span class="chip g">Total pool Â±0% (250)</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">TU crossbow +7.7%</span>
+      <span class="chip b" tabindex="0" data-ab="wing-shurikens">TU shuriken heal +50%</span>
+    </div>
+  </div>
+  <p>A real +8.3% on her <span class="ab" tabindex="0" data-ab="psionic-crossbow">primary</span> with no anchor to lose, plus stronger Emma Frost and Cloak &amp; Dagger team-ups on top.</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Scarlet Witch</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="dark-seal">Seal castable in Projection</span>
+      <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting ends Projection early</span>
+    </div>
+  </div>
+  <p><span class="ab" tabindex="0" data-ab="dark-seal">Dark Seal</span> is now castable during <span class="ab" tabindex="0" data-ab="mystic-projection">Mystic Projection</span> at the cost of ending the projection â€” flexibility, not raw power.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Star-Lord</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="stellar-shift">Stellar Shift âˆ’25 bonus HP</span>
+      <span class="chip g">Total pool Â±0% (250)</span>
+    </div>
+  </div>
+  <p>Pool total survives the shield conversion, but <span class="ab" tabindex="0" data-ab="stellar-shift">Stellar Shift</span> losing its 25 on-demand bonus health is an uncompensated dueling nerf.</p>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Storm</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="wind-blade">Wind Blade +3.9%</span>
+      <span class="chip r">Other damage âˆ’4.8%</span>
+    </div>
+  </div>
+  <p>Her main damage tool <span class="ab" tabindex="0" data-ab="wind-blade">Wind Blade</span> nets a real 3.9% gain over the lost anchor; everything unrebased slips 4.8%.</p>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>The Punisher</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="adjudication">Both guns âˆ’5%</span></div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip g">With Daredevil Â±0%</span></div>
+  </div>
+  <p>A flat 5% cut to <span class="ab" tabindex="0" data-ab="adjudication">Adjudication</span> and <span class="ab" tabindex="0" data-ab="deliverance">Deliverance</span> that the new Daredevil team-up exactly refunds â€” nerfed solo, neutral when paired.</p>
+</div>
+</div>
+
+<footer>
+  <strong>Method &amp; sources.</strong> Before-values include the hero's own Team-Up Anchor bonus, which was a permanent always-on passive (confirmed via wiki and guides) â€” so anchor-loss nerfs are unconditional. Same-target boost stacking verified additive via community damage testing; output-vs-received layers multiply. No official stacking formula is published by NetEase. Ability tooltips sourced from marvelrivals.wiki.gg, liquipedia, rivalsmeta, altchar, and fdaytalk, and baked into this page.
+  <ul>
+    <li>Official balance post v20260710 â€” marvelrivals.com (all raw numbers verified against it)</li>
+    <li>DrunkRatt damage-boost testing guide (X, Dec 2024) â€” "damage boosts stack additively"</li>
+    <li>marvelrivals.wiki.gg â€” Buffs &amp; debuffs, hero pages (ability descriptions)</li>
+  </ul>
+</footer>
+</div>
+
+<div id="tip" role="tooltip"></div>
+
+<div class="editbar" id="editbar">
+  <button id="editToggle" title="Toggle click-to-edit on all text">âœŽ Edit</button>
+  <button id="saveBtn" title="Keep your edits in this browser">Save</button>
+  <button id="dlBtn" title="Download your edited copy as HTML">Download</button>
+  <button id="resetBtn" title="Discard local edits and restore the original">Reset</button>
+  <span class="status" id="editStatus"></span>
+</div>
+
+<script>
+/* ===== ability tooltip data (fetched from wikis at build time; CSP blocks live calls) ===== */
+var ABILITIES = {
+  "cosmic-cluster":{h:"Adam Warlock",n:"Cosmic Cluster",d:"Alternate fire: charges his scepter and releases a burst of up to five fast energy bolts; these bolts can't score headshots.",s:"marvelrivals.wiki.gg"},
+  "quantum-magic":{h:"Adam Warlock",n:"Quantum Magic",d:"His primary fire: hitscan cosmic bolts from the scepter; headshots refund cooldown on his healing ability. The Ultron team-up now raises its ammo capacity 15â†’25.",s:"marvelrivals.wiki.gg"},
+  "spirit-sanctuary":{h:"White Fox",n:"Spirit Sanctuary",d:"Teleports her to a chosen ally, instantly healing allies at the arrival point and raising a brief projectile-blocking barrier.",s:"altchar.com"},
+  "kumiho-unleashed":{h:"White Fox",n:"Kumiho Unleashed (Ultimate)",d:"Transforms into her nine-tailed fox melee form with a large bonus health pool; her attacks heal herself and nearby allies, but she can't be healed by others while transformed.",s:"altchar.com"},
+  "healing-flower":{h:"Mantis",n:"Healing Flower",d:"Targeted ally heal (~30m, works through barriers) that spends a Life Orb: burst healing plus a heal-over-time that recasting can extend.",s:"marvelrivals.wiki.gg"},
+  "natures-favor":{h:"Mantis",n:"Nature's Favor",d:"Her self-sustain passive: consuming Life Orbs heals Mantis over time, plus bonus move speed out of combat. The Adam Warlock team-up strengthens the self-healing rate.",s:"marvelrivals.wiki.gg"},
+  "number-one-idol":{h:"Luna Snow",n:"Number One Idol (Passive)",d:"Passive added S5.5: boosts Luna's damage and the healing she receives, and converts a share of the healing she deals into self-healing. This patch removes the damage part and doubles the healing-received part to 20%.",s:"rivalsmeta.com"},
+  "idol-aura":{h:"Luna Snow",n:"Share the Stage / Idol Aura",d:"Attaches an Idol Aura to one ally (or herself); the marked ally automatically receives a share (now 40%) of the healing Luna deals to other targets.",s:"marvelrivals.wiki.gg"},
+  "orb-projection":{h:"Invisible Woman",n:"Orb Projection",d:"Primary fire: a psionic orb that flies out and boomerangs back, damaging enemies and healing allies it passes through â€” it can hit the same target on both passes.",s:"marvelrivals.wiki.gg"},
+  "kinetic-cards":{h:"Gambit",n:"Kinetic Cards",d:"Primary fire: throws spreads of kinetically charged cards that damage enemies or heal allies on impact.",s:"marvelrivals.wiki.gg"},
+  "repair-mode":{h:"Rocket Raccoon",n:"Repair Mode",d:"Alternate fire: bouncing healing orbs that drift along surfaces, continuously healing all allies near them for several seconds.",s:"marvelrivals.wiki.gg"},
+  "cya":{h:"Rocket Raccoon",n:"C.Y.A. (Ultimate)",d:"Cosmic Yarn Amplifier: deploys a destructible device that boosts nearby allies' damage and continuously generates bonus health for them while it stands. Its effect now decays with distance.",s:"marvelrivals.wiki.gg"},
+  "lightforce-dagger":{h:"Cloak & Dagger",n:"Lightforce Dagger",d:"Dagger's primary: slow homing daggers that damage enemies or heal allies; healing also spreads to teammates near the struck ally.",s:"marvelrivals.wiki.gg"},
+  "veil-of-lightforce":{h:"Cloak & Dagger",n:"Veil of Lightforce",d:"Sends a traveling wall of light that heals allies it passes through and briefly increases the healing they receive.",s:"marvelrivals.wiki.gg"},
+  "dagger-storm":{h:"Cloak & Dagger",n:"Dagger Storm",d:"Lobs a projectile that creates a stationary healing zone, continuously restoring allies standing inside for several seconds.",s:"marvelrivals.wiki.gg"},
+  "imperative-firewall":{h:"Ultron",n:"Imperative: Firewall",d:"Deploys a micro-drone swarm around Ultron that sustains him and nearby allies with area healing and bonus health while active.",s:"marvelrivals.wiki.gg"},
+  "prehistoric-plating":{h:"Devil Dinosaur",n:"Prehistoric Plating",d:"Passive armor: reduces damage taken from critical hits, blocks knockback and displacement, and cuts the ultimate energy enemies build by damaging him.",s:"fdaytalk.com"},
+  "shield-of-the-seraphim":{h:"Doctor Strange",n:"Shield of the Seraphim",d:"Conjures a large frontal barrier that blocks projectiles but not melee; can be raised and lowered at will, recharging while lowered.",s:"marvelrivals.wiki.gg"},
+  "storm-surge":{h:"Thor",n:"Storm Surge",d:"Chargeable dash costing Thorforce: propels him forward, carrying a collided enemy along and damaging them; travel distance increased this patch.",s:"marvelrivals.wiki.gg"},
+  "hammer-throw":{h:"Thor",n:"Hammer Throw",d:"Throws Mjolnir as a fast straight-line projectile that damages on the way out and on recall; hitting an enemy refunds Thorforce.",s:"marvelrivals.wiki.gg"},
+  "stone-haymaker":{h:"The Thing",n:"Stone Haymaker",d:"Charged power punch with a wide frontal hitbox; slams flying enemies to the ground and grants The Thing bonus health based on damage dealt.",s:"marvelrivals.wiki.gg"},
+  "clobberin-time":{h:"The Thing",n:"Clobberin' Time (Ultimate)",d:"A massive ground slam sending a fissure across the floor that damages and stuns enemies in its path; its backswing animation is faster this patch.",s:"marvelrivals.wiki.gg"},
+  "yancy-street-charge":{h:"The Thing",n:"Yancy Street Charge",d:"Grants bonus health and charges forward, knocking enemies airborne; ends in a slam that disables enemy mobility abilities in the zone.",s:"marvelrivals.wiki.gg"},
+  "dual-desert-eagles":{h:"Deadpool (Vanguard)",n:"Dual Desert Eagles",d:"Primary fire: dual hitscan pistols with heavy damage falloff at range.",s:"marvelrivals.wiki.gg"},
+  "deadpool-n-your-area":{h:"Deadpool (Vanguard)",n:"Deadpool N Your Area",d:"Creates an energy field around him that ticks damage and clutters enemies' screens with cartoon Deadpools; the upgraded version grants damage reduction to him and nearby allies.",s:"marvelrivals.wiki.gg"},
+  "heavy-blow":{h:"Hulk",n:"Heavy Blow",d:"Melee primary: rapid punches; Monster Hulk's version hits harder with a bigger hitbox and knockback.",s:"marvelrivals.wiki.gg"},
+  "hulk-smash":{h:"Hulk",n:"Hulk Smash (Ultimate)",d:"Transforms into Monster Hulk, roughly doubling max health and empowering his abilities for the duration.",s:"marvelrivals.wiki.gg"},
+  "defensive-stance":{h:"Rogue",n:"Defensive Stance",d:"Hold to guard with strong damage reduction; damage blocked charges an empowered Southern Brawl that must be used quickly or the charge is lost.",s:"marvelrivals.wiki.gg"},
+  "southern-brawl":{h:"Rogue",n:"Southern Brawl",d:"From Defensive Stance: dashes forward and delivers a punch whose damage scales with how much damage she blocked.",s:"marvelrivals.wiki.gg"},
+  "maximum-fortune":{h:"Black Cat",n:"Maximum Fortune",d:"Her resource cap: hitting enemies builds Fortune up to the cap (now 1200); her abilities spend stored Fortune.",s:"community guides"},
+  "optic-blast":{h:"Cyclops",n:"Optic Blast",d:"Primary fire: quick hitscan optic bursts; landing hits speeds up Ricochet Force's recharge.",s:"liquipedia.net"},
+  "ricochet-force":{h:"Cyclops",n:"Ricochet Force",d:"An optic beam that diffracts off terrain to track nearby enemies and grants bonus health on use; holds two charges.",s:"liquipedia.net"},
+  "cyclops-mobility":{h:"Cyclops",n:"Propulsion Burst / Optic Ascent",d:"His two movement tools: Propulsion Burst blasts him backward (chargeable, knocks back enemies); Optic Ascent launches him straight up. Both cooldowns went 12sâ†’15s.",s:"thestardustmag.com"},
+  "double-barrel-blaster":{h:"Elsa Bloodstone",n:"Double-Barrel Blaster",d:"Primary fire: hitscan double-barrel shotgun firing pellet bursts from a limited shell capacity (now 12).",s:"marvelrivals.wiki.gg"},
+  "helix-advance":{h:"Elsa Bloodstone",n:"Helix Advance",d:"Short omnidirectional dash granting bonus health and chaining into her follow-up attack; cooldown shortens at max Instinct.",s:"marvelrivals.wiki.gg"},
+  "piercing-arrow":{h:"Hawkeye",n:"Piercing Arrow",d:"Primary fire: draw-and-release arrow whose damage scales with draw time, up to a very large fully-charged headshot.",s:"marvelrivals.wiki.gg"},
+  "nightsword-thorn":{h:"Hela",n:"Nightsword Thorn",d:"Primary fire: thrown daggers, headshot-capable, from a small magazine â€” her core poke damage. Falloff now bottoms out at 75% at 35m.",s:"marvelrivals.wiki.gg"},
+  "astral-flock":{h:"Hela",n:"Astral Flock",d:"Transforms into a crow for a couple of seconds, damage-immune while flying; this patch makes the flight fully free-directional.",s:"marvelrivals.wiki.gg"},
+  "crescent-dart":{h:"Moon Knight",n:"Crescent Dart",d:"Primary fire: crescent blades thrown in sets that ricochet between nearby enemies, losing some damage per bounce.",s:"marvelrivals.wiki.gg"},
+  "hand-of-khonshu":{h:"Moon Knight",n:"Hand of Khonshu (Ultimate)",d:"Opens a portal that bombards a targeted zone with rapid talon strikes for several seconds.",s:"marvelrivals.wiki.gg"},
+  "endsong-inferno":{h:"Phoenix",n:"Endsong Inferno (Ultimate)",d:"Rises damage-immune, targets an area, then dives â€” big impact damage plus a shockwave that applies Spark stacks to enemies hit.",s:"marvelrivals.wiki.gg"},
+  "psionic-crossbow":{h:"Psylocke",n:"Psionic Crossbow",d:"Primary fire: spreads of psionic bolts from wrist crossbows, strongest up close. The Cloak & Dagger team-up raises its damage 13â†’14.",s:"marvelrivals.wiki.gg"},
+  "wing-shurikens":{h:"Psylocke",n:"Wing Shurikens",d:"Throws shurikens that stick to surfaces or enemies, granting her bonus health per hit; reactivate to recall them.",s:"marvelrivals.wiki.gg"},
+  "adjudication":{h:"The Punisher",n:"Adjudication",d:"His assault rifle: fast hitscan rounds from a large magazine; auto-reloads while holstered.",s:"marvelrivals.wiki.gg"},
+  "deliverance":{h:"The Punisher",n:"Deliverance",d:"His shotgun: semi-auto hitscan pellet blasts, devastating at close range.",s:"marvelrivals.wiki.gg"},
+  "dark-seal":{h:"Scarlet Witch",n:"Dark Seal",d:"Launches a chaos orb that creates a stationary sphere which periodically stuns enemies inside; now castable during Mystic Projection.",s:"marvelrivals.wiki.gg"},
+  "mystic-projection":{h:"Scarlet Witch",n:"Mystic Projection",d:"Becomes incorporeal for about 2 seconds with free flight and full damage immunity; holds two charges.",s:"marvelrivals.wiki.gg"},
+  "stellar-shift":{h:"Star-Lord",n:"Stellar Shift",d:"Quick rocket-boot dodge with a blink of damage immunity that reloads his guns; this patch removes its 25 bonus health.",s:"marvelrivals.wiki.gg"},
+  "wind-blade":{h:"Storm",n:"Wind Blade",d:"Primary fire: piercing wind projectile that passes through enemies â€” no falloff, no headshots; blocked by barriers.",s:"marvelrivals.wiki.gg"},
+  "repulsor-blast":{h:"Iron Man",n:"Repulsor Blast",d:"Primary fire: exploding nano-pulse shots with splash damage; every third shot is a stronger dual blast.",s:"marvelrivals.wiki.gg"},
+  "unibeam":{h:"Iron Man",n:"Unibeam",d:"Secondary fire: a piercing hitscan chest beam; shares ammo with Repulsor Blast.",s:"marvelrivals.wiki.gg"},
+  "armor-overdrive":{h:"Iron Man",n:"Armor Overdrive",d:"Buff state: temporarily boosts Repulsor Blast and Unibeam damage and refreshes his ammo.",s:"marvelrivals.wiki.gg"}
+};
+
+/* ===== tooltip behavior: show after ~1s hover (or short delay on keyboard focus) ===== */
+(function(){
+  var tip = document.getElementById('tip');
+  var timer = null, current = null;
+  var HOVER_DELAY = 1000, FOCUS_DELAY = 250;
+
+  function hide(){
+    if (timer) { clearTimeout(timer); timer = null; }
+    tip.style.display = 'none'; current = null;
+  }
+  function show(el){
+    var key = el.getAttribute('data-ab');
+    var a = ABILITIES[key];
+    if (!a || document.body.classList.contains('editing')) return;
+    tip.innerHTML = '<div class="th">' + a.h + ' Â· ' + a.s + '</div>' +
+                    '<div class="tn">' + a.n + '</div>' +
+                    '<div class="td">' + a.d + '</div>';
+    tip.style.display = 'block';
+    tip.style.visibility = 'hidden';
+    var r = el.getBoundingClientRect();
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    var left = Math.max(8, Math.min(r.left, window.innerWidth - tw - 8));
+    var top = r.bottom + 8;
+    if (top + th > window.innerHeight - 8) top = r.top - th - 8;
+    tip.style.left = left + 'px';
+    tip.style.top = Math.max(8, top) + 'px';
+    tip.style.visibility = 'visible';
+    current = el;
+  }
+  function arm(el, delay){
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(function(){ show(el); }, delay);
+  }
+  document.addEventListener('mouseover', function(e){
+    var el = e.target.closest ? e.target.closest('[data-ab]') : null;
+    if (!el) return;
+    if (current === el) return;
+    arm(el, HOVER_DELAY);
+  });
+  document.addEventListener('mouseout', function(e){
+    var el = e.target.closest ? e.target.closest('[data-ab]') : null;
+    if (!el) return;
+    var to = e.relatedTarget;
+    if (to && el.contains(to)) return;
+    hide();
+  });
+  document.addEventListener('focusin', function(e){
+    var el = e.target.closest ? e.target.closest('[data-ab]') : null;
+    if (el) arm(el, FOCUS_DELAY);
+  });
+  document.addEventListener('focusout', hide);
+  document.addEventListener('scroll', hide, true);
+  window.addEventListener('resize', hide);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') hide(); });
+})();
+
+/* ===== edit mode (local persistence + export) ===== */
+(function(){
+  var KEY = 'rivals-patch-v20260710-edits-v3';
+  var OLDKEYS = ['rivals-patch-v20260710-edits-v2','rivals-patch-v20260710-edits'];
+  var wrap = document.querySelector('.wrap');
+  var bar = {
+    toggle: document.getElementById('editToggle'),
+    save: document.getElementById('saveBtn'),
+    dl: document.getElementById('dlBtn'),
+    reset: document.getElementById('resetBtn'),
+    status: document.getElementById('editStatus')
+  };
+  function say(msg){ bar.status.textContent = msg; }
+  function store(){ try { return window.localStorage; } catch(e){ return null; } }
+  function download(html, name){
+    var blob = new Blob([html], {type:'text/html'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  var ls = store();
+  if (ls) {
+    var saved = ls.getItem(KEY);
+    if (saved) {
+      wrap.innerHTML = saved; say('Restored your edited version');
+    } else {
+      var legacy = null;
+      for (var i = 0; i < OLDKEYS.length; i++) {
+        var v = ls.getItem(OLDKEYS[i]);
+        if (v) { legacy = v; break; }
+      }
+      if (legacy) {
+        say('Edits from a previous layout are saved');
+        var rec = document.createElement('button');
+        rec.textContent = 'Recover old edits';
+        rec.title = 'Download the version you edited before the layout update';
+        rec.addEventListener('click', function(){
+          var css = document.querySelector('style') ? document.querySelector('style').textContent : '';
+          var html = '<!doctype html>\n<html><head><meta charset="utf-8"><title>My edited version (pre-update)</title><style>' + css + '</style></head><body><div class="wrap">' + legacy + '</div></body></html>';
+          download(html, 'rivals-patch-my-old-edits.html');
+          say('Old edits downloaded');
+        });
+        bar.status.parentNode.insertBefore(rec, bar.status);
+      }
+    }
+  } else {
+    say('Local save unavailable â€” use Download');
+  }
+
+  bar.toggle.addEventListener('click', function(){
+    var on = wrap.getAttribute('contenteditable') === 'true';
+    wrap.setAttribute('contenteditable', on ? 'false' : 'true');
+    document.body.classList.toggle('editing', !on);
+    bar.toggle.classList.toggle('on', !on);
+    say(on ? '' : 'Click any text to edit');
+    if (!on) wrap.focus();
+  });
+
+  bar.save.addEventListener('click', function(){
+    if (!ls) { say('Blocked by browser â€” use Download'); return; }
+    try { ls.setItem(KEY, wrap.innerHTML); say('Saved in this browser'); }
+    catch(e){ say('Save failed â€” use Download'); }
+  });
+
+  bar.dl.addEventListener('click', function(){
+    var doc = document.documentElement.cloneNode(true);
+    var w = doc.querySelector('.wrap'); if (w) w.removeAttribute('contenteditable');
+    var b = doc.querySelector('#editbar'); if (b) b.parentNode.removeChild(b);
+    var t = doc.querySelector('#tip'); if (t) t.parentNode.removeChild(t);
+    doc.querySelectorAll('script').forEach(function(s){ s.parentNode.removeChild(s); });
+    download('<!doctype html>\n' + doc.outerHTML, 'rivals-true-net-patch-edited.html');
+    say('Downloaded edited copy');
+  });
+
+  bar.reset.addEventListener('click', function(){
+    if (!window.confirm('Discard your local edits and restore the original document?')) return;
+    if (ls) { ls.removeItem(KEY); OLDKEYS.forEach(function(k){ ls.removeItem(k); }); }
+    window.location.reload();
+  });
+})();
+</script>
+
+</html>
