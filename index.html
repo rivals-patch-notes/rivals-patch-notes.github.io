@@ -48,7 +48,7 @@
   h1{font-size:clamp(26px,4.4vw,38px); font-weight:800; letter-spacing:-.02em; margin:0 0 8px; text-wrap:balance}
   .sub{color:var(--muted); max-width:70ch; margin:0 0 20px}
   /* summary strip */
-  .strip{display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 28px}
+  .strip{display:flex; flex-wrap:wrap; gap:10px; margin:28px 0 28px}
   .tile{
     background:var(--card); border:1px solid var(--line); border-radius:8px;
     padding:12px 18px; min-width:132px;
@@ -139,46 +139,14 @@
 </style>
 
 <div class="wrap">
-<header>
-  <p class="eyebrow">Marvel Rivals · Version 20260710 · Balance Post, July 2026</p>
-  <h1>True Net Patch Math — Anchor Rework Edition</h1>
-  <p class="sub">Every number below is the <strong>effective</strong> change: what a hero actually gains or loses versus last patch, where their Team-Up Anchor bonus was a permanent, always-on passive. Raw patch-note "buffs" that don't cover a removed anchor are shown as the nets they really are.</p>
-</header>
-
 <div class="strip">
   <div class="tile buff"><div class="n">10</div><div class="l">Net buffed</div></div>
   <div class="tile nerf"><div class="n">20</div><div class="l">Net nerfed</div></div>
   <div class="tile neut"><div class="n">10</div><div class="l">Neutral / mixed</div></div>
-  <div class="tile"><div class="n">40</div><div class="l">Entries analyzed</div></div>
-</div>
-
-<div class="panel">
-  <h2>How the math works (verified)</h2>
-  <p><strong>Removing an anchor is a division, not a subtraction.</strong> A hero who had +X% and now has +0% keeps <span class="k">1 ÷ (1+X)</span> of their old output:</p>
-  <div class="conv"><span>+5% removed → −4.8%</span><span>+10% removed → −9.1%</span><span>+15% removed → −13.0%</span></div>
-  <p><strong>Stacking rule.</strong> Community damage testing shows boosts on the <em>same target</em> stack <strong>additively</strong> (e.g. Luna ult + Mantis boost = 48%, not 51.2%). But a healer's <em>output</em> boost (the anchor) and a target's <em>healing-received</em> boost are different layers and <strong>multiply</strong>: heal × (1+anchor) × (1+received). NetEase publishes no official formula. Only Luna Snow has overlapping layers in this patch (her output boost × her healing-received passive) — her card breaks the cases out; every other hero's number is identical either way.</p>
-  <p><strong>Anchor bonuses were unconditional.</strong> The Season Bonus was always active on the anchor hero — it never required the team-up partner to be on your team. So every red anchor-loss number below applies in <em>every single game</em>, not just partnered comps. The only changes that still depend on a specific partner are the named team-up abilities (Mantis's Healing Flower, Punisher with Daredevil, etc.).</p>
-  <p><strong>Conventions.</strong> Longer cooldowns and pricier ults are shown as reduced cast/ult frequency (12s→15s = −20% casts). Health pools compare old total (base + anchor) to new total (base + regen shield). Inside each card, changes are split: <strong>Base kit</strong> above the line (ordinary balance tuning), <strong>Anchor &amp; team-ups</strong> below it. <span class="ab" tabindex="0" data-ab="orb-projection">Dotted ability names</span> carry tooltips — hover about a second (or keyboard-focus) for what the ability does, pulled from community wikis and baked into this page (the artifact sandbox blocks live web calls).</p>
-</div>
-
-<div class="panel">
-  <h2>Global changes (missing from the original analysis)</h2>
-  <div class="chips" style="margin-bottom:10px">
-    <span class="chip r">Vanguard/Duelist ult charge from damage −21.4%</span>
-    <span class="chip r">Strategist ult charge from healing −20.0%</span>
-    <span class="chip r">Strategist ult charge from damage −26.7%</span>
-    <span class="chip g">New: Regenerative Shields</span>
   </div>
-  <p>Every role builds ultimates slower (damage-to-energy 70%→55% for Vanguards/Duelists; healing 75%→60% and damage 75%→55% for Strategists). Regenerative Shields count as base health for percentage effects and fully restore over 5s after 5s without taking damage — a real sustain upgrade for every converted hero.</p>
-</div>
 
-<div class="legend">
-  <span><span class="dot b"></span>Net buff</span>
-  <span><span class="dot r"></span>Net nerf</span>
-  <span><span class="dot g"></span>Neutral / tradeoff</span>
-  <span>Per card: <strong>Base kit</strong> ─ line ─ <strong>Anchor &amp; team-ups</strong></span>
-  <span>Dotted text = hover ~1s for ability info</span>
-</div>
+
+
 
 <!-- ============ STRATEGISTS ============ -->
 <div class="role"><h2>Strategists</h2><span class="count">10 entries</span></div>
@@ -198,7 +166,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip b" tabindex="0" data-ab="quantum-magic">Ammo w/ Ultron +66.7%</span></div>
   </div>
-  <p>No anchor to lose — this is a plain trade: 25 more HP for ~8% softer alt-fire. With Ultron on the team, <span class="ab" tabindex="0" data-ab="quantum-magic">Quantum Magic</span> ammo jumps 15→25.</p>
 </div>
 
 <div class="card nerf">
@@ -215,7 +182,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">All healing −9.1%</span></div>
   </div>
-  <p>No heal was rebased, so losing the +10% anchor cuts everything she heals by 9.1%, and <span class="ab" tabindex="0" data-ab="spirit-sanctuary">Spirit Sanctuary</span> comes up 20% less often. <span class="ab" tabindex="0" data-ab="kumiho-unleashed">Kumiho Unleashed</span> getting 900→1200 HP is her only real win.</p>
 </div>
 
 <div class="card neut">
@@ -228,7 +194,6 @@
       <span class="chip b" tabindex="0" data-ab="natures-favor">Self-heal w/ Adam +27.3%</span>
     </div>
   </div>
-  <p>Her baseline healing is 9.1% lower across the board in every game. The partner-specific team-ups over-compensate where they apply: <span class="ab" tabindex="0" data-ab="healing-flower">Healing Flower</span>'s real value rises 11→15 with Star-Lord and self-healing goes 13.75→17.5/s with Adam Warlock.</p>
 </div>
 
 <div class="card nerf">
@@ -247,7 +212,6 @@
       <span class="chip g" tabindex="0" data-ab="idol-aura">Idol Aura share ≈ flat (−0.6%)</span>
     </div>
   </div>
-  <p>Her healing output takes the full −13% anchor loss with nothing rebased. Wiki data pins <span class="ab" tabindex="0" data-ab="number-one-idol">Number One Idol</span> as a passive on Luna herself: the doubled boost is healing she <em>receives</em> (allies heal her 9.1% harder), while her self-heals still net −5.1% (1.15×1.10 → 1.20). <span class="ab" tabindex="0" data-ab="idol-aura">Share the Stage</span>'s share rebase (35%→40%) almost exactly cancels the anchor on the aura ally (−0.6%).</p>
 </div>
 
 <div class="card nerf">
@@ -261,7 +225,6 @@
       <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Strange TU shield +150</span>
     </div>
   </div>
-  <p>The <span class="ab" tabindex="0" data-ab="orb-projection">Orb Projection</span> raises (45→50, 35→40) only claw back part of the lost +15% anchor; every heal that wasn't rebased drops the full 13%. Her team-up now grants Doctor Strange +150 shield.</p>
 </div>
 
 <div class="card nerf">
@@ -273,7 +236,6 @@
       <span class="chip r">Other healing −4.8%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="kinetic-cards">Kinetic Cards</span> were slightly over-compensated (28→30 beats the lost 5%), but the rest of his healing quietly loses 4.8%.</p>
 </div>
 
 <div class="card nerf">
@@ -293,7 +255,6 @@
       <span class="chip r">Other healing −4.8%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="repair-mode">Repair Mode</span> orbs come out ahead (52.5→55 effective), but other healing drops 4.8%, <span class="ab" tabindex="0" data-ab="cya">C.Y.A.</span> costs 7.5% more energy, and its effect now decays with distance (−60% by 20m).</p>
 </div>
 
 <div class="card neut">
@@ -308,7 +269,6 @@
       <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psylocke TU crossbow +7.7%</span>
     </div>
   </div>
-  <p>Bread-and-butter <span class="ab" tabindex="0" data-ab="lightforce-dagger">dagger</span> healing is a real +8.7% even after the anchor loss, but the big cooldowns land 3.4% lower and anything unrebased drops 13%. Their team-up now buffs Psylocke's crossbow 13→14.</p>
 </div>
 
 <div class="card nerf">
@@ -317,7 +277,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">All healing −4.8%</span></div>
   </div>
-  <p>Nothing was rebased — the anchor removal is a clean 4.8% off all of his healing.</p>
 </div>
 
 <div class="card buff">
@@ -329,7 +288,6 @@
       <span class="chip b" tabindex="0" data-ab="quantum-magic">Adam ammo TU +66.7%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="imperative-firewall">Firewall</span> drones go 30→35/s — an 11.1% real gain even after counting his old +5% anchor. His team-up now also hands Adam Warlock 10 extra rounds.</p>
 </div>
 </div>
 
@@ -346,7 +304,6 @@
       <span class="chip b">200 HP now self-regens</span>
     </div>
   </div>
-  <p>Same 550 total, but 200 of it now self-regenerates after 5 seconds out of combat — the pool is unchanged and slightly better in practice.</p>
 </div>
 
 <div class="card nerf">
@@ -358,7 +315,6 @@
       <span class="chip b">300 HP now self-regens</span>
     </div>
   </div>
-  <p>The shield conversion doesn't cover both the −300 base HP and the lost 100-HP anchor: he's down 100 effective HP (700→600), though half his pool now self-recovers.</p>
 </div>
 
 <div class="card nerf">
@@ -367,7 +323,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">−50 HP</span></div>
   </div>
-  <p>Her 50-HP anchor bonus was removed with zero compensation elsewhere in her kit.</p>
 </div>
 
 <div class="card neut">
@@ -376,7 +331,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip g">Total pool ±0% (850)</span></div>
   </div>
-  <p>+150 base HP exactly replaces the anchor bonus — same 850 total, just moved into base health.</p>
 </div>
 
 <div class="card buff">
@@ -396,7 +350,6 @@
       <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Elsa TU pellets +11.1%</span>
     </div>
   </div>
-  <p>Pool is unchanged at 850, and <span class="ab" tabindex="0" data-ab="prehistoric-plating">Prehistoric Plating</span> got real teeth: crits against him deal 20% less and enemies build 7.7% less ult energy off him.</p>
 </div>
 
 <div class="card buff">
@@ -414,7 +367,6 @@
       <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">IW TU shield → 1000</span>
     </div>
   </div>
-  <p>Slightly less personal HP once the anchor is counted (675→650), but the bigger <span class="ab" tabindex="0" data-ab="shield-of-the-seraphim">Seraphim shield</span> puts total mitigation up 9.1% — and Invisible Woman on the team pushes it to 1000.</p>
 </div>
 
 <div class="card buff">
@@ -428,7 +380,6 @@
       <span class="chip g">Total pool ±0% (600)</span>
     </div>
   </div>
-  <p>Damage, sustain, and <span class="ab" tabindex="0" data-ab="storm-surge">Storm Surge</span> mobility all up with no anchor to lose; half his pool converts to self-regenerating shield.</p>
 </div>
 
 <div class="card buff">
@@ -441,7 +392,6 @@
       <span class="chip b" tabindex="0" data-ab="yancy-street-charge">Charge reliability up</span>
     </div>
   </div>
-  <p>Pure quality-of-life patch: 100→150 <span class="ab" tabindex="0" data-ab="stone-haymaker">Haymaker</span> padding, a quicker backswing, and a more forgiving <span class="ab" tabindex="0" data-ab="yancy-street-charge">Yancy Street Charge</span> hitbox.</p>
 </div>
 
 <div class="card buff">
@@ -458,7 +408,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip g">Total pool ±0% (500)</span></div>
   </div>
-  <p>Damage and team damage-reduction both improve, and the +50 base HP fully replaces the lost anchor.</p>
 </div>
 
 <div class="card nerf">
@@ -475,7 +424,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">Total pool −6.7%</span></div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="heavy-blow">Heavy Blow</span> hits harder, but he's down 50 effective HP (750→700) and <span class="ab" tabindex="0" data-ab="hulk-smash">Hulk Smash</span> takes 8% longer to build.</p>
 </div>
 
 <div class="card nerf">
@@ -488,7 +436,6 @@
       <span class="chip r" tabindex="0" data-ab="southern-brawl">Southern Brawl −16.7%</span>
     </div>
   </div>
-  <p>Nerfed on every axis, none of it anchor-related: 75 less total pool, <span class="ab" tabindex="0" data-ab="defensive-stance">Defensive Stance</span> blocks less, and <span class="ab" tabindex="0" data-ab="southern-brawl">Southern Brawl</span>'s bonus damage drops 90→75.</p>
 </div>
 
 <div class="card nerf">
@@ -500,7 +447,6 @@
       <span class="chip b">250 HP now self-regens</span>
     </div>
   </div>
-  <p>Down 75 effective HP (825→750) once the lost 150-HP anchor is counted, partly offset by a third of his pool now self-regenerating.</p>
 </div>
 </div>
 
@@ -522,7 +468,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">All damage −4.8%</span></div>
   </div>
-  <p>Everything hits 4.8% softer with the anchor gone, traded against a higher <span class="ab" tabindex="0" data-ab="maximum-fortune">Fortune</span> ceiling and a partly self-regenerating pool.</p>
 </div>
 
 <div class="card neut">
@@ -534,7 +479,6 @@
       <span class="chip b">125 HP now self-regens</span>
     </div>
   </div>
-  <p>Damage untouched — 125 of his 275 pool just became regenerating shield, a small sustain gain.</p>
 </div>
 
 <div class="card nerf">
@@ -552,7 +496,6 @@
       <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
-  <p>Hardest-hit hero in the patch: both main damage numbers were cut below even their old un-anchored values, and both movement cooldowns come up 20% less often.</p>
 </div>
 
 <div class="card nerf">
@@ -569,7 +512,6 @@
       <span class="chip b" tabindex="0" data-ab="adjudication">Punisher TU: his guns restored</span>
     </div>
   </div>
-  <p>Same pool with half converted to regen shield, but all damage drops 4.8%. His team-up now restores Punisher's pre-nerf gun damage.</p>
 </div>
 
 <div class="card nerf">
@@ -578,7 +520,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">All damage −4.8%</span></div>
   </div>
-  <p>Anchor removal only: everything hits 4.8% softer.</p>
 </div>
 
 <div class="card buff">
@@ -595,7 +536,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Pellets w/ Devil Dino +11.1%</span></div>
   </div>
-  <p>Fifty percent more shells per reload for one extra second on <span class="ab" tabindex="0" data-ab="helix-advance">Helix Advance</span> is a strong trade, and the Devil Dinosaur team-up adds 11% pellet damage.</p>
 </div>
 
 <div class="card buff">
@@ -608,7 +548,6 @@
       <span class="chip g">Max damage ±0%</span>
     </div>
   </div>
-  <p>Faster arrows and better partial-charge scaling on <span class="ab" tabindex="0" data-ab="piercing-arrow">Piercing Arrow</span> with no anchor to lose; full-charge damage is unchanged.</p>
 </div>
 
 <div class="card neut">
@@ -628,7 +567,6 @@
       <span class="chip r">Other damage −13.0%</span>
     </div>
   </div>
-  <p>Her main shot was rebased almost perfectly (80.5→80 effective) and gains 6.5% at max falloff, but unrebased abilities lose the full 13% — traded for real mobility in <span class="ab" tabindex="0" data-ab="astral-flock">crow form</span>.</p>
 </div>
 
 <div class="card nerf">
@@ -637,7 +575,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">All damage −4.8%</span></div>
   </div>
-  <p>No rebase anywhere, so losing the +5% anchor is a flat 4.8% off everything he does.</p>
 </div>
 
 <div class="card nerf">
@@ -650,7 +587,6 @@
       <span class="chip r" tabindex="0" data-ab="unibeam">Unibeam −9.8%</span>
     </div>
   </div>
-  <p>Cut below even his un-anchored values across the whole kit — a deliberate double nerf of 10–14% on everything he fires.</p>
 </div>
 
 <div class="card buff">
@@ -662,7 +598,6 @@
       <span class="chip b">125 HP now self-regens</span>
     </div>
   </div>
-  <p>One of the few straight survivability buffs: 25 more total pool, nearly half of it self-regenerating.</p>
 </div>
 
 <div class="card nerf">
@@ -679,7 +614,6 @@
       <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="crescent-dart">Darts</span> come out slightly ahead of the anchor loss, but the rest of his kit drops 4.8% and <span class="ab" tabindex="0" data-ab="hand-of-khonshu">Hand of Khonshu</span> charges ~10% slower.</p>
 </div>
 
 <div class="card nerf">
@@ -691,7 +625,6 @@
       <span class="chip r">Other damage −9.1%</span>
     </div>
   </div>
-  <p>The 140→150 "buff" doesn't cover her lost +10% anchor — the <span class="ab" tabindex="0" data-ab="endsong-inferno">Endsong Inferno</span> explosion nets −2.6% and unrebased damage drops 9.1%.</p>
 </div>
 
 <div class="card buff">
@@ -711,7 +644,6 @@
       <span class="chip b" tabindex="0" data-ab="wing-shurikens">TU shuriken heal +50%</span>
     </div>
   </div>
-  <p>A real +8.3% on her <span class="ab" tabindex="0" data-ab="psionic-crossbow">primary</span> with no anchor to lose, plus stronger Emma Frost and Cloak &amp; Dagger team-ups on top.</p>
 </div>
 
 <div class="card neut">
@@ -723,7 +655,6 @@
       <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting ends Projection early</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="dark-seal">Dark Seal</span> is now castable during <span class="ab" tabindex="0" data-ab="mystic-projection">Mystic Projection</span> at the cost of ending the projection — flexibility, not raw power.</p>
 </div>
 
 <div class="card nerf">
@@ -735,7 +666,6 @@
       <span class="chip g">Total pool ±0% (250)</span>
     </div>
   </div>
-  <p>Pool total survives the shield conversion, but <span class="ab" tabindex="0" data-ab="stellar-shift">Stellar Shift</span> losing its 25 on-demand bonus health is an uncompensated dueling nerf.</p>
 </div>
 
 <div class="card neut">
@@ -747,7 +677,6 @@
       <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
-  <p>Her main damage tool <span class="ab" tabindex="0" data-ab="wind-blade">Wind Blade</span> nets a real 3.9% gain over the lost anchor; everything unrebased slips 4.8%.</p>
 </div>
 
 <div class="card nerf">
@@ -761,7 +690,6 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip g">With Daredevil ±0%</span></div>
   </div>
-  <p>A flat 5% cut to <span class="ab" tabindex="0" data-ab="adjudication">Adjudication</span> and <span class="ab" tabindex="0" data-ab="deliverance">Deliverance</span> that the new Daredevil team-up exactly refunds — nerfed solo, neutral when paired.</p>
 </div>
 </div>
 
@@ -900,8 +828,8 @@ var ABILITIES = {
 
 /* ===== edit mode (local persistence + export) ===== */
 (function(){
-  var KEY = 'rivals-patch-v20260710-edits-v3';
-  var OLDKEYS = ['rivals-patch-v20260710-edits-v2','rivals-patch-v20260710-edits'];
+  var KEY = 'rivals-patch-v20260710-edits-v4';
+  var OLDKEYS = ['rivals-patch-v20260710-edits-v3','rivals-patch-v20260710-edits-v2','rivals-patch-v20260710-edits'];
   var wrap = document.querySelector('.wrap');
   var bar = {
     toggle: document.getElementById('editToggle'),
