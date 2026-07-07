@@ -120,24 +120,6 @@
     .card{transition:border-color .15s ease}
     .card:hover{border-color:var(--accent)}
   }
-  /* edit mode */
-  .editbar{
-    position:fixed; right:16px; bottom:16px; z-index:50;
-    display:flex; gap:6px; align-items:center;
-    background:var(--card); border:1px solid var(--line); border-radius:999px;
-    padding:6px 8px; box-shadow:0 4px 18px rgba(0,0,0,.18);
-  }
-  .editbar button{
-    font:600 12px/1 var(--mono); color:var(--ink);
-    background:var(--neut-bg); border:1px solid var(--neut-line); border-radius:999px;
-    padding:7px 12px; cursor:pointer;
-  }
-  .editbar button:hover{border-color:var(--accent)}
-  .editbar button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-  .editbar button.on{background:var(--buff-bg); border-color:var(--buff-line); color:var(--buff)}
-  .editbar .status{font:11.5px var(--mono); color:var(--muted); padding:0 6px; max-width:190px}
-  body.editing .wrap{outline:2px dashed var(--accent); outline-offset:10px; border-radius:8px}
-  body.editing .wrap [contenteditable]:focus{outline:none}
 </style>
 
 <div class="wrap">
@@ -702,14 +684,6 @@
 
 <div id="tip" role="tooltip"></div>
 
-<div class="editbar" id="editbar">
-  <button id="editToggle" title="Toggle click-to-edit on all text">✎ Edit</button>
-  <button id="saveBtn" title="Keep your edits in this browser">Save</button>
-  <button id="dlBtn" title="Download your edited copy as HTML">Download</button>
-  <button id="resetBtn" title="Discard local edits and restore the original">Reset</button>
-  <span class="status" id="editStatus"></span>
-</div>
-
 <script>
 /* ===== ability tooltip data (fetched from wikis at build time; CSP blocks live calls) ===== */
 var ABILITIES = {
@@ -823,89 +797,6 @@ var ABILITIES = {
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') hide(); });
 })();
 
-/* ===== edit mode (local persistence + export) ===== */
-(function(){
-  var KEY = 'rivals-patch-v20260710-edits-v6';
-  var OLDKEYS = ['rivals-patch-v20260710-edits-v5','rivals-patch-v20260710-edits-v4','rivals-patch-v20260710-edits-v3','rivals-patch-v20260710-edits-v2','rivals-patch-v20260710-edits'];
-  var wrap = document.querySelector('.wrap');
-  var bar = {
-    toggle: document.getElementById('editToggle'),
-    save: document.getElementById('saveBtn'),
-    dl: document.getElementById('dlBtn'),
-    reset: document.getElementById('resetBtn'),
-    status: document.getElementById('editStatus')
-  };
-  function say(msg){ bar.status.textContent = msg; }
-  function store(){ try { return window.localStorage; } catch(e){ return null; } }
-  function download(html, name){
-    var blob = new Blob([html], {type:'text/html'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = name;
-    document.body.appendChild(a); a.click();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
-  }
-
-  var ls = store();
-  if (ls) {
-    var saved = ls.getItem(KEY);
-    if (saved) {
-      wrap.innerHTML = saved; say('Restored your edited version');
-    } else {
-      var legacy = null;
-      for (var i = 0; i < OLDKEYS.length; i++) {
-        var v = ls.getItem(OLDKEYS[i]);
-        if (v) { legacy = v; break; }
-      }
-      if (legacy) {
-        say('Edits from a previous layout are saved');
-        var rec = document.createElement('button');
-        rec.textContent = 'Recover old edits';
-        rec.title = 'Download the version you edited before the layout update';
-        rec.addEventListener('click', function(){
-          var css = document.querySelector('style') ? document.querySelector('style').textContent : '';
-          var html = '<!doctype html>\n<html><head><meta charset="utf-8"><title>My edited version (pre-update)</title><style>' + css + '</style></head><body><div class="wrap">' + legacy + '</div></body></html>';
-          download(html, 'rivals-patch-my-old-edits.html');
-          say('Old edits downloaded');
-        });
-        bar.status.parentNode.insertBefore(rec, bar.status);
-      }
-    }
-  } else {
-    say('Local save unavailable — use Download');
-  }
-
-  bar.toggle.addEventListener('click', function(){
-    var on = wrap.getAttribute('contenteditable') === 'true';
-    wrap.setAttribute('contenteditable', on ? 'false' : 'true');
-    document.body.classList.toggle('editing', !on);
-    bar.toggle.classList.toggle('on', !on);
-    say(on ? '' : 'Click any text to edit');
-    if (!on) wrap.focus();
-  });
-
-  bar.save.addEventListener('click', function(){
-    if (!ls) { say('Blocked by browser — use Download'); return; }
-    try { ls.setItem(KEY, wrap.innerHTML); say('Saved in this browser'); }
-    catch(e){ say('Save failed — use Download'); }
-  });
-
-  bar.dl.addEventListener('click', function(){
-    var doc = document.documentElement.cloneNode(true);
-    var w = doc.querySelector('.wrap'); if (w) w.removeAttribute('contenteditable');
-    var b = doc.querySelector('#editbar'); if (b) b.parentNode.removeChild(b);
-    var t = doc.querySelector('#tip'); if (t) t.parentNode.removeChild(t);
-    doc.querySelectorAll('script').forEach(function(s){ s.parentNode.removeChild(s); });
-    download('<!doctype html>\n' + doc.outerHTML, 'rivals-true-net-patch-edited.html');
-    say('Downloaded edited copy');
-  });
-
-  bar.reset.addEventListener('click', function(){
-    if (!window.confirm('Discard your local edits and restore the original document?')) return;
-    if (ls) { ls.removeItem(KEY); OLDKEYS.forEach(function(k){ ls.removeItem(k); }); }
-    window.location.reload();
-  });
-})();
 </script>
 
 </html>
