@@ -76,6 +76,10 @@
   .role::before{content:""; width:5px; height:22px; background:var(--accent); border-radius:2px}
   .role .count{font-family:var(--mono); font-size:12px; color:var(--muted)}
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:14px}
+  .subhead{font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin:18px 0 10px}
+  .subhead.b{color:var(--buff)}
+  .subhead.g{color:var(--neut)}
+  .subhead.r{color:var(--nerf)}
   /* cards */
   .card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; display:flex; flex-direction:column; gap:10px}
   .card.buff{box-shadow:inset 3px 0 0 var(--buff)}
@@ -137,6 +141,22 @@
 
 <!-- ============ STRATEGISTS ============ -->
 <div class="role"><h2>Strategists</h2><span class="count">10 entries</span></div>
+<div class="subhead b">Buffed</div>
+<div class="grid">
+
+<div class="card buff">
+  <div class="top"><h3>Ultron</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="imperative-firewall">Drone healing +11.1%</span>
+      <span class="chip b" tabindex="0" data-ab="quantum-magic">Adam ammo TU +66.7%</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="subhead g">Mixed / Neutral</div>
 <div class="grid">
 
 <div class="card neut">
@@ -155,6 +175,36 @@
   </div>
 </div>
 
+<div class="card neut">
+  <div class="top"><h3>Mantis</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">General healing −9.1%</span>
+      <span class="chip b" tabindex="0" data-ab="healing-flower">Flower w/ Star-Lord +36.4%</span>
+      <span class="chip b" tabindex="0" data-ab="natures-favor">Self-heal w/ Adam +27.3%</span>
+    </div>
+  </div>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Cloak &amp; Dagger</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="lightforce-dagger">Dagger hits +8.7%</span>
+      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil −3.4%</span>
+      <span class="chip r" tabindex="0" data-ab="dagger-storm">Dagger Storm −3.4%</span>
+      <span class="chip r">Other healing −13.0%</span>
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psylocke TU crossbow +7.7%</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="subhead r">Nerfed</div>
+<div class="grid">
+
 <div class="card nerf">
   <div class="top"><h3>White Fox</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
@@ -168,18 +218,6 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip r">All healing −9.1%</span></div>
-  </div>
-</div>
-
-<div class="card neut">
-  <div class="top"><h3>Mantis</h3><span class="verdict g">MIXED</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip r">General healing −9.1%</span>
-      <span class="chip b" tabindex="0" data-ab="healing-flower">Flower w/ Star-Lord +36.4%</span>
-      <span class="chip b" tabindex="0" data-ab="natures-favor">Self-heal w/ Adam +27.3%</span>
-    </div>
   </div>
 </div>
 
@@ -244,20 +282,6 @@
   </div>
 </div>
 
-<div class="card neut">
-  <div class="top"><h3>Cloak &amp; Dagger</h3><span class="verdict g">MIXED</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="lightforce-dagger">Dagger hits +8.7%</span>
-      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil −3.4%</span>
-      <span class="chip r" tabindex="0" data-ab="dagger-storm">Dagger Storm −3.4%</span>
-      <span class="chip r">Other healing −13.0%</span>
-      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psylocke TU crossbow +7.7%</span>
-    </div>
-  </div>
-</div>
-
 <div class="card nerf">
   <div class="top"><h3>Deadpool <span style="font-weight:400;color:var(--muted)">(Strategist)</span></h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
@@ -265,60 +289,12 @@
     <div class="chips"><span class="chip r">All healing −4.8%</span></div>
   </div>
 </div>
-
-<div class="card buff">
-  <div class="top"><h3>Ultron</h3><span class="verdict b">NET BUFF</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="imperative-firewall">Drone healing +11.1%</span>
-      <span class="chip b" tabindex="0" data-ab="quantum-magic">Adam ammo TU +66.7%</span>
-    </div>
-  </div>
-</div>
 </div>
 
 <!-- ============ VANGUARDS ============ -->
 <div class="role"><h2>Vanguards</h2><span class="count">12 entries</span></div>
+<div class="subhead b">Buffed</div>
 <div class="grid">
-
-<div class="card neut">
-  <div class="top"><h3>Angela</h3><span class="verdict g">NEUTRAL</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip g">Total health pool ±0% (550)</span>
-      <span class="chip b">200 HP now self-regens</span>
-    </div>
-  </div>
-</div>
-
-<div class="card nerf">
-  <div class="top"><h3>Captain America</h3><span class="verdict r">NET NERF</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip r">Total health pool −14.3%</span>
-      <span class="chip b">300 HP now self-regens</span>
-    </div>
-  </div>
-</div>
-
-<div class="card nerf">
-  <div class="top"><h3>Peni Parker</h3><span class="verdict r">NET NERF</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">−50 HP</span></div>
-  </div>
-</div>
-
-<div class="card neut">
-  <div class="top"><h3>Groot</h3><span class="verdict g">NEUTRAL</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip g">Total health pool ±0% (850)</span></div>
-  </div>
-</div>
 
 <div class="card buff">
   <div class="top"><h3>Devil Dinosaur</h3><span class="verdict b">NET BUFF</span></div>
@@ -396,6 +372,52 @@
     <div class="chips"><span class="chip g">Total health pool ±0% (500)</span></div>
   </div>
 </div>
+</div>
+
+<div class="subhead g">Mixed / Neutral</div>
+<div class="grid">
+
+<div class="card neut">
+  <div class="top"><h3>Angela</h3><span class="verdict g">NEUTRAL</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip g">Total health pool ±0% (550)</span>
+      <span class="chip b">200 HP now self-regens</span>
+    </div>
+  </div>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Groot</h3><span class="verdict g">NEUTRAL</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip g">Total health pool ±0% (850)</span></div>
+  </div>
+</div>
+</div>
+
+<div class="subhead r">Nerfed</div>
+<div class="grid">
+
+<div class="card nerf">
+  <div class="top"><h3>Captain America</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip r">Total health pool −14.3%</span>
+      <span class="chip b">300 HP now self-regens</span>
+    </div>
+  </div>
+</div>
+
+<div class="card nerf">
+  <div class="top"><h3>Peni Parker</h3><span class="verdict r">NET NERF</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip r">−50 HP</span></div>
+  </div>
+</div>
 
 <div class="card nerf">
   <div class="top"><h3>Hulk</h3><span class="verdict r">NET NERF</span></div>
@@ -439,6 +461,69 @@
 
 <!-- ============ DUELISTS ============ -->
 <div class="role"><h2>Duelists</h2><span class="count">18 entries</span></div>
+<div class="subhead b">Buffed</div>
+<div class="grid">
+
+<div class="card buff">
+  <div class="top"><h3>Elsa Bloodstone</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Ammo +50%</span>
+      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix casts −9.1%</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Pellets w/ Devil Dino +11.1%</span></div>
+  </div>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Hawkeye</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Arrow speed +8.3%</span>
+      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Partial-charge damage up</span>
+      <span class="chip g">Max damage ±0%</span>
+    </div>
+  </div>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Magik</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b">Total health pool +10% (275)</span>
+      <span class="chip b">125 HP now self-regens</span>
+    </div>
+  </div>
+</div>
+
+<div class="card buff">
+  <div class="top"><h3>Psylocke</h3><span class="verdict b">NET BUFF</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Crossbow +8.3%</span>
+      <span class="chip g">Total health pool ±0% (250)</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">TU crossbow +7.7%</span>
+      <span class="chip b" tabindex="0" data-ab="wing-shurikens">TU shuriken heal +50%</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="subhead g">Mixed / Neutral</div>
 <div class="grid">
 
 <div class="card neut">
@@ -467,6 +552,51 @@
     </div>
   </div>
 </div>
+
+<div class="card neut">
+  <div class="top"><h3>Hela</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="nightsword-thorn">Max-range damage +6.5%</span>
+      <span class="chip b" tabindex="0" data-ab="astral-flock">Free crow flight</span>
+    </div>
+  </div>
+  <div class="divide"></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword −0.6%</span>
+      <span class="chip r">Other damage −13.0%</span>
+    </div>
+  </div>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Scarlet Witch</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Base kit</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="dark-seal">Seal castable in Projection</span>
+      <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting ends Projection early</span>
+    </div>
+  </div>
+</div>
+
+<div class="card neut">
+  <div class="top"><h3>Storm</h3><span class="verdict g">MIXED</span></div>
+  <div class="grp">
+    <div class="glabel">Anchor &amp; team-ups</div>
+    <div class="chips">
+      <span class="chip b" tabindex="0" data-ab="wind-blade">Wind Blade +3.9%</span>
+      <span class="chip r">Other damage −4.8%</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="subhead r">Nerfed</div>
+<div class="grid">
 
 <div class="card nerf">
   <div class="top"><h3>Cyclops</h3><span class="verdict r">NET NERF</span></div>
@@ -509,53 +639,6 @@
   </div>
 </div>
 
-<div class="card buff">
-  <div class="top"><h3>Elsa Bloodstone</h3><span class="verdict b">NET BUFF</span></div>
-  <div class="grp">
-    <div class="glabel">Base kit</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Ammo +50%</span>
-      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix casts −9.1%</span>
-    </div>
-  </div>
-  <div class="divide"></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Pellets w/ Devil Dino +11.1%</span></div>
-  </div>
-</div>
-
-<div class="card buff">
-  <div class="top"><h3>Hawkeye</h3><span class="verdict b">NET BUFF</span></div>
-  <div class="grp">
-    <div class="glabel">Base kit</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Arrow speed +8.3%</span>
-      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Partial-charge damage up</span>
-      <span class="chip g">Max damage ±0%</span>
-    </div>
-  </div>
-</div>
-
-<div class="card neut">
-  <div class="top"><h3>Hela</h3><span class="verdict g">MIXED</span></div>
-  <div class="grp">
-    <div class="glabel">Base kit</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="nightsword-thorn">Max-range damage +6.5%</span>
-      <span class="chip b" tabindex="0" data-ab="astral-flock">Free crow flight</span>
-    </div>
-  </div>
-  <div class="divide"></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword −0.6%</span>
-      <span class="chip r">Other damage −13.0%</span>
-    </div>
-  </div>
-</div>
-
 <div class="card nerf">
   <div class="top"><h3>Human Torch</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
@@ -572,17 +655,6 @@
       <span class="chip r" tabindex="0" data-ab="repulsor-blast">Repulsor field −14.3% / −13.4%</span>
       <span class="chip r" tabindex="0" data-ab="armor-overdrive">Overdrive field −12.1%</span>
       <span class="chip r" tabindex="0" data-ab="unibeam">Unibeam −9.8%</span>
-    </div>
-  </div>
-</div>
-
-<div class="card buff">
-  <div class="top"><h3>Magik</h3><span class="verdict b">NET BUFF</span></div>
-  <div class="grp">
-    <div class="glabel">Base kit</div>
-    <div class="chips">
-      <span class="chip b">Total health pool +10% (275)</span>
-      <span class="chip b">125 HP now self-regens</span>
     </div>
   </div>
 </div>
@@ -614,36 +686,6 @@
   </div>
 </div>
 
-<div class="card buff">
-  <div class="top"><h3>Psylocke</h3><span class="verdict b">NET BUFF</span></div>
-  <div class="grp">
-    <div class="glabel">Base kit</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Crossbow +8.3%</span>
-      <span class="chip g">Total health pool ±0% (250)</span>
-    </div>
-  </div>
-  <div class="divide"></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">TU crossbow +7.7%</span>
-      <span class="chip b" tabindex="0" data-ab="wing-shurikens">TU shuriken heal +50%</span>
-    </div>
-  </div>
-</div>
-
-<div class="card neut">
-  <div class="top"><h3>Scarlet Witch</h3><span class="verdict g">MIXED</span></div>
-  <div class="grp">
-    <div class="glabel">Base kit</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="dark-seal">Seal castable in Projection</span>
-      <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting ends Projection early</span>
-    </div>
-  </div>
-</div>
-
 <div class="card nerf">
   <div class="top"><h3>Star-Lord</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
@@ -651,17 +693,6 @@
     <div class="chips">
       <span class="chip r" tabindex="0" data-ab="stellar-shift">Stellar Shift −25 bonus HP</span>
       <span class="chip g">Total health pool ±0% (250)</span>
-    </div>
-  </div>
-</div>
-
-<div class="card neut">
-  <div class="top"><h3>Storm</h3><span class="verdict g">MIXED</span></div>
-  <div class="grp">
-    <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="wind-blade">Wind Blade +3.9%</span>
-      <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
 </div>
