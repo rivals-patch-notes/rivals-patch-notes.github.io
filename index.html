@@ -1,5 +1,6 @@
-﻿<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Marvel Rivals â€” True Net Patch Math (v20260710)</title>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marvel Rivals — True Net Patch Math (v20260710)</title>
 <style>
   :root{
     --bg:#F3F4F6; --card:#FFFFFF; --ink:#171C26; --muted:#5A6472; --line:#E2E6EC;
@@ -139,8 +140,8 @@
 
 <div class="wrap">
 <header>
-  <p class="eyebrow">Marvel Rivals Â· Version 20260710 Â· Balance Post, July 2026</p>
-  <h1>True Net Patch Math â€” Anchor Rework Edition</h1>
+  <p class="eyebrow">Marvel Rivals · Version 20260710 · Balance Post, July 2026</p>
+  <h1>True Net Patch Math — Anchor Rework Edition</h1>
   <p class="sub">Every number below is the <strong>effective</strong> change: what a hero actually gains or loses versus last patch, where their Team-Up Anchor bonus was a permanent, always-on passive. Raw patch-note "buffs" that don't cover a removed anchor are shown as the nets they really are.</p>
 </header>
 
@@ -153,29 +154,29 @@
 
 <div class="panel">
   <h2>How the math works (verified)</h2>
-  <p><strong>Removing an anchor is a division, not a subtraction.</strong> A hero who had +X% and now has +0% keeps <span class="k">1 Ã· (1+X)</span> of their old output:</p>
-  <div class="conv"><span>+5% removed â†’ âˆ’4.8%</span><span>+10% removed â†’ âˆ’9.1%</span><span>+15% removed â†’ âˆ’13.0%</span></div>
-  <p><strong>Stacking rule.</strong> Community damage testing shows boosts on the <em>same target</em> stack <strong>additively</strong> (e.g. Luna ult + Mantis boost = 48%, not 51.2%). But a healer's <em>output</em> boost (the anchor) and a target's <em>healing-received</em> boost are different layers and <strong>multiply</strong>: heal Ã— (1+anchor) Ã— (1+received). NetEase publishes no official formula. Only Luna Snow has overlapping layers in this patch (her output boost Ã— her healing-received passive) â€” her card breaks the cases out; every other hero's number is identical either way.</p>
-  <p><strong>Anchor bonuses were unconditional.</strong> The Season Bonus was always active on the anchor hero â€” it never required the team-up partner to be on your team. So every red anchor-loss number below applies in <em>every single game</em>, not just partnered comps. The only changes that still depend on a specific partner are the named team-up abilities (Mantis's Healing Flower, Punisher with Daredevil, etc.).</p>
-  <p><strong>Conventions.</strong> Longer cooldowns and pricier ults are shown as reduced cast/ult frequency (12sâ†’15s = âˆ’20% casts). Health pools compare old total (base + anchor) to new total (base + regen shield). Inside each card, changes are split: <strong>Base kit</strong> above the line (ordinary balance tuning), <strong>Anchor &amp; team-ups</strong> below it. <span class="ab" tabindex="0" data-ab="orb-projection">Dotted ability names</span> carry tooltips â€” hover about a second (or keyboard-focus) for what the ability does, pulled from community wikis and baked into this page (the artifact sandbox blocks live web calls).</p>
+  <p><strong>Removing an anchor is a division, not a subtraction.</strong> A hero who had +X% and now has +0% keeps <span class="k">1 ÷ (1+X)</span> of their old output:</p>
+  <div class="conv"><span>+5% removed → −4.8%</span><span>+10% removed → −9.1%</span><span>+15% removed → −13.0%</span></div>
+  <p><strong>Stacking rule.</strong> Community damage testing shows boosts on the <em>same target</em> stack <strong>additively</strong> (e.g. Luna ult + Mantis boost = 48%, not 51.2%). But a healer's <em>output</em> boost (the anchor) and a target's <em>healing-received</em> boost are different layers and <strong>multiply</strong>: heal × (1+anchor) × (1+received). NetEase publishes no official formula. Only Luna Snow has overlapping layers in this patch (her output boost × her healing-received passive) — her card breaks the cases out; every other hero's number is identical either way.</p>
+  <p><strong>Anchor bonuses were unconditional.</strong> The Season Bonus was always active on the anchor hero — it never required the team-up partner to be on your team. So every red anchor-loss number below applies in <em>every single game</em>, not just partnered comps. The only changes that still depend on a specific partner are the named team-up abilities (Mantis's Healing Flower, Punisher with Daredevil, etc.).</p>
+  <p><strong>Conventions.</strong> Longer cooldowns and pricier ults are shown as reduced cast/ult frequency (12s→15s = −20% casts). Health pools compare old total (base + anchor) to new total (base + regen shield). Inside each card, changes are split: <strong>Base kit</strong> above the line (ordinary balance tuning), <strong>Anchor &amp; team-ups</strong> below it. <span class="ab" tabindex="0" data-ab="orb-projection">Dotted ability names</span> carry tooltips — hover about a second (or keyboard-focus) for what the ability does, pulled from community wikis and baked into this page (the artifact sandbox blocks live web calls).</p>
 </div>
 
 <div class="panel">
   <h2>Global changes (missing from the original analysis)</h2>
   <div class="chips" style="margin-bottom:10px">
-    <span class="chip r">Vanguard/Duelist ult charge from damage âˆ’21.4%</span>
-    <span class="chip r">Strategist ult charge from healing âˆ’20.0%</span>
-    <span class="chip r">Strategist ult charge from damage âˆ’26.7%</span>
+    <span class="chip r">Vanguard/Duelist ult charge from damage −21.4%</span>
+    <span class="chip r">Strategist ult charge from healing −20.0%</span>
+    <span class="chip r">Strategist ult charge from damage −26.7%</span>
     <span class="chip g">New: Regenerative Shields</span>
   </div>
-  <p>Every role builds ultimates slower (damage-to-energy 70%â†’55% for Vanguards/Duelists; healing 75%â†’60% and damage 75%â†’55% for Strategists). Regenerative Shields count as base health for percentage effects and fully restore over 5s after 5s without taking damage â€” a real sustain upgrade for every converted hero.</p>
+  <p>Every role builds ultimates slower (damage-to-energy 70%→55% for Vanguards/Duelists; healing 75%→60% and damage 75%→55% for Strategists). Regenerative Shields count as base health for percentage effects and fully restore over 5s after 5s without taking damage — a real sustain upgrade for every converted hero.</p>
 </div>
 
 <div class="legend">
   <span><span class="dot b"></span>Net buff</span>
   <span><span class="dot r"></span>Net nerf</span>
   <span><span class="dot g"></span>Neutral / tradeoff</span>
-  <span>Per card: <strong>Base kit</strong> â”€ line â”€ <strong>Anchor &amp; team-ups</strong></span>
+  <span>Per card: <strong>Base kit</strong> ─ line ─ <strong>Anchor &amp; team-ups</strong></span>
   <span>Dotted text = hover ~1s for ability info</span>
 </div>
 
@@ -189,7 +190,7 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b">Health +10%</span>
-      <span class="chip r" tabindex="0" data-ab="cosmic-cluster">Cosmic Cluster âˆ’7.9%</span>
+      <span class="chip r" tabindex="0" data-ab="cosmic-cluster">Cosmic Cluster −7.9%</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -197,7 +198,7 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips"><span class="chip b" tabindex="0" data-ab="quantum-magic">Ammo w/ Ultron +66.7%</span></div>
   </div>
-  <p>No anchor to lose â€” this is a plain trade: 25 more HP for ~8% softer alt-fire. With Ultron on the team, <span class="ab" tabindex="0" data-ab="quantum-magic">Quantum Magic</span> ammo jumps 15â†’25.</p>
+  <p>No anchor to lose — this is a plain trade: 25 more HP for ~8% softer alt-fire. With Ultron on the team, <span class="ab" tabindex="0" data-ab="quantum-magic">Quantum Magic</span> ammo jumps 15→25.</p>
 </div>
 
 <div class="card nerf">
@@ -205,16 +206,16 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="spirit-sanctuary">Sanctuary casts âˆ’20%</span>
+      <span class="chip r" tabindex="0" data-ab="spirit-sanctuary">Sanctuary casts −20%</span>
       <span class="chip b" tabindex="0" data-ab="kumiho-unleashed">Ult health +33.3%</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">All healing âˆ’9.1%</span></div>
+    <div class="chips"><span class="chip r">All healing −9.1%</span></div>
   </div>
-  <p>No heal was rebased, so losing the +10% anchor cuts everything she heals by 9.1%, and <span class="ab" tabindex="0" data-ab="spirit-sanctuary">Spirit Sanctuary</span> comes up 20% less often. <span class="ab" tabindex="0" data-ab="kumiho-unleashed">Kumiho Unleashed</span> getting 900â†’1200 HP is her only real win.</p>
+  <p>No heal was rebased, so losing the +10% anchor cuts everything she heals by 9.1%, and <span class="ab" tabindex="0" data-ab="spirit-sanctuary">Spirit Sanctuary</span> comes up 20% less often. <span class="ab" tabindex="0" data-ab="kumiho-unleashed">Kumiho Unleashed</span> getting 900→1200 HP is her only real win.</p>
 </div>
 
 <div class="card neut">
@@ -222,12 +223,12 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r">General healing âˆ’9.1%</span>
+      <span class="chip r">General healing −9.1%</span>
       <span class="chip b" tabindex="0" data-ab="healing-flower">Flower w/ Star-Lord +36.4%</span>
       <span class="chip b" tabindex="0" data-ab="natures-favor">Self-heal w/ Adam +27.3%</span>
     </div>
   </div>
-  <p>Her baseline healing is 9.1% lower across the board in every game. The partner-specific team-ups over-compensate where they apply: <span class="ab" tabindex="0" data-ab="healing-flower">Healing Flower</span>'s real value rises 11â†’15 with Star-Lord and self-healing goes 13.75â†’17.5/s with Adam Warlock.</p>
+  <p>Her baseline healing is 9.1% lower across the board in every game. The partner-specific team-ups over-compensate where they apply: <span class="ab" tabindex="0" data-ab="healing-flower">Healing Flower</span>'s real value rises 11→15 with Star-Lord and self-healing goes 13.75→17.5/s with Adam Warlock.</p>
 </div>
 
 <div class="card nerf">
@@ -240,13 +241,13 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r">Healing output âˆ’13.0%</span>
+      <span class="chip r">Healing output −13.0%</span>
       <span class="chip b" tabindex="0" data-ab="number-one-idol">Healing received +9.1%</span>
-      <span class="chip r" tabindex="0" data-ab="number-one-idol">Self-heal net âˆ’5.1%</span>
-      <span class="chip g" tabindex="0" data-ab="idol-aura">Idol Aura share â‰ˆ flat (âˆ’0.6%)</span>
+      <span class="chip r" tabindex="0" data-ab="number-one-idol">Self-heal net −5.1%</span>
+      <span class="chip g" tabindex="0" data-ab="idol-aura">Idol Aura share ≈ flat (−0.6%)</span>
     </div>
   </div>
-  <p>Her healing output takes the full âˆ’13% anchor loss with nothing rebased. Wiki data pins <span class="ab" tabindex="0" data-ab="number-one-idol">Number One Idol</span> as a passive on Luna herself: the doubled boost is healing she <em>receives</em> (allies heal her 9.1% harder), while her self-heals still net âˆ’5.1% (1.15Ã—1.10 â†’ 1.20). <span class="ab" tabindex="0" data-ab="idol-aura">Share the Stage</span>'s share rebase (35%â†’40%) almost exactly cancels the anchor on the aura ally (âˆ’0.6%).</p>
+  <p>Her healing output takes the full −13% anchor loss with nothing rebased. Wiki data pins <span class="ab" tabindex="0" data-ab="number-one-idol">Number One Idol</span> as a passive on Luna herself: the doubled boost is healing she <em>receives</em> (allies heal her 9.1% harder), while her self-heals still net −5.1% (1.15×1.10 → 1.20). <span class="ab" tabindex="0" data-ab="idol-aura">Share the Stage</span>'s share rebase (35%→40%) almost exactly cancels the anchor on the aura ally (−0.6%).</p>
 </div>
 
 <div class="card nerf">
@@ -254,13 +255,13 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="orb-projection">Orb outgoing âˆ’3.4%</span>
-      <span class="chip g" tabindex="0" data-ab="orb-projection">Orb return âˆ’0.6%</span>
-      <span class="chip r">Other healing âˆ’13.0%</span>
+      <span class="chip r" tabindex="0" data-ab="orb-projection">Orb outgoing −3.4%</span>
+      <span class="chip g" tabindex="0" data-ab="orb-projection">Orb return −0.6%</span>
+      <span class="chip r">Other healing −13.0%</span>
       <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Strange TU shield +150</span>
     </div>
   </div>
-  <p>The <span class="ab" tabindex="0" data-ab="orb-projection">Orb Projection</span> raises (45â†’50, 35â†’40) only claw back part of the lost +15% anchor; every heal that wasn't rebased drops the full 13%. Her team-up now grants Doctor Strange +150 shield.</p>
+  <p>The <span class="ab" tabindex="0" data-ab="orb-projection">Orb Projection</span> raises (45→50, 35→40) only claw back part of the lost +15% anchor; every heal that wasn't rebased drops the full 13%. Her team-up now grants Doctor Strange +150 shield.</p>
 </div>
 
 <div class="card nerf">
@@ -269,10 +270,10 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="kinetic-cards">Kinetic Cards +2.0%</span>
-      <span class="chip r">Other healing âˆ’4.8%</span>
+      <span class="chip r">Other healing −4.8%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="kinetic-cards">Kinetic Cards</span> were slightly over-compensated (28â†’30 beats the lost 5%), but the rest of his healing quietly loses 4.8%.</p>
+  <p><span class="ab" tabindex="0" data-ab="kinetic-cards">Kinetic Cards</span> were slightly over-compensated (28→30 beats the lost 5%), but the rest of his healing quietly loses 4.8%.</p>
 </div>
 
 <div class="card nerf">
@@ -280,7 +281,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. frequency âˆ’7.0%</span>
+      <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. frequency −7.0%</span>
       <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. range falloff added</span>
     </div>
   </div>
@@ -289,10 +290,10 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="repair-mode">Repair orbs +4.8%</span>
-      <span class="chip r">Other healing âˆ’4.8%</span>
+      <span class="chip r">Other healing −4.8%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="repair-mode">Repair Mode</span> orbs come out ahead (52.5â†’55 effective), but other healing drops 4.8%, <span class="ab" tabindex="0" data-ab="cya">C.Y.A.</span> costs 7.5% more energy, and its effect now decays with distance (âˆ’60% by 20m).</p>
+  <p><span class="ab" tabindex="0" data-ab="repair-mode">Repair Mode</span> orbs come out ahead (52.5→55 effective), but other healing drops 4.8%, <span class="ab" tabindex="0" data-ab="cya">C.Y.A.</span> costs 7.5% more energy, and its effect now decays with distance (−60% by 20m).</p>
 </div>
 
 <div class="card neut">
@@ -301,22 +302,22 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="lightforce-dagger">Dagger hits +8.7%</span>
-      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil âˆ’3.4%</span>
-      <span class="chip r" tabindex="0" data-ab="dagger-storm">Dagger Storm âˆ’3.4%</span>
-      <span class="chip r">Other healing âˆ’13.0%</span>
+      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil −3.4%</span>
+      <span class="chip r" tabindex="0" data-ab="dagger-storm">Dagger Storm −3.4%</span>
+      <span class="chip r">Other healing −13.0%</span>
       <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psylocke TU crossbow +7.7%</span>
     </div>
   </div>
-  <p>Bread-and-butter <span class="ab" tabindex="0" data-ab="lightforce-dagger">dagger</span> healing is a real +8.7% even after the anchor loss, but the big cooldowns land 3.4% lower and anything unrebased drops 13%. Their team-up now buffs Psylocke's crossbow 13â†’14.</p>
+  <p>Bread-and-butter <span class="ab" tabindex="0" data-ab="lightforce-dagger">dagger</span> healing is a real +8.7% even after the anchor loss, but the big cooldowns land 3.4% lower and anything unrebased drops 13%. Their team-up now buffs Psylocke's crossbow 13→14.</p>
 </div>
 
 <div class="card nerf">
   <div class="top"><h3>Deadpool <span style="font-weight:400;color:var(--muted)">(Strategist)</span></h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">All healing âˆ’4.8%</span></div>
+    <div class="chips"><span class="chip r">All healing −4.8%</span></div>
   </div>
-  <p>Nothing was rebased â€” the anchor removal is a clean 4.8% off all of his healing.</p>
+  <p>Nothing was rebased — the anchor removal is a clean 4.8% off all of his healing.</p>
 </div>
 
 <div class="card buff">
@@ -328,7 +329,7 @@
       <span class="chip b" tabindex="0" data-ab="quantum-magic">Adam ammo TU +66.7%</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="imperative-firewall">Firewall</span> drones go 30â†’35/s â€” an 11.1% real gain even after counting his old +5% anchor. His team-up now also hands Adam Warlock 10 extra rounds.</p>
+  <p><span class="ab" tabindex="0" data-ab="imperative-firewall">Firewall</span> drones go 30→35/s — an 11.1% real gain even after counting his old +5% anchor. His team-up now also hands Adam Warlock 10 extra rounds.</p>
 </div>
 </div>
 
@@ -341,11 +342,11 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip g">Total pool Â±0% (550)</span>
+      <span class="chip g">Total pool ±0% (550)</span>
       <span class="chip b">200 HP now self-regens</span>
     </div>
   </div>
-  <p>Same 550 total, but 200 of it now self-regenerates after 5 seconds out of combat â€” the pool is unchanged and slightly better in practice.</p>
+  <p>Same 550 total, but 200 of it now self-regenerates after 5 seconds out of combat — the pool is unchanged and slightly better in practice.</p>
 </div>
 
 <div class="card nerf">
@@ -353,18 +354,18 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r">Total pool âˆ’14.3%</span>
+      <span class="chip r">Total pool −14.3%</span>
       <span class="chip b">300 HP now self-regens</span>
     </div>
   </div>
-  <p>The shield conversion doesn't cover both the âˆ’300 base HP and the lost 100-HP anchor: he's down 100 effective HP (700â†’600), though half his pool now self-recovers.</p>
+  <p>The shield conversion doesn't cover both the −300 base HP and the lost 100-HP anchor: he's down 100 effective HP (700→600), though half his pool now self-recovers.</p>
 </div>
 
 <div class="card nerf">
   <div class="top"><h3>Peni Parker</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">âˆ’50 HP</span></div>
+    <div class="chips"><span class="chip r">−50 HP</span></div>
   </div>
   <p>Her 50-HP anchor bonus was removed with zero compensation elsewhere in her kit.</p>
 </div>
@@ -373,9 +374,9 @@
   <div class="top"><h3>Groot</h3><span class="verdict g">NEUTRAL</span></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip g">Total pool Â±0% (850)</span></div>
+    <div class="chips"><span class="chip g">Total pool ±0% (850)</span></div>
   </div>
-  <p>+150 base HP exactly replaces the anchor bonus â€” same 850 total, just moved into base health.</p>
+  <p>+150 base HP exactly replaces the anchor bonus — same 850 total, just moved into base health.</p>
 </div>
 
 <div class="card buff">
@@ -383,15 +384,15 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Crit damage taken âˆ’20%</span>
-      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Enemy ult charge off him âˆ’7.7%</span>
+      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Crit damage taken −20%</span>
+      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Enemy ult charge off him −7.7%</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip g">Total pool Â±0% (850)</span>
+      <span class="chip g">Total pool ±0% (850)</span>
       <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Elsa TU pellets +11.1%</span>
     </div>
   </div>
@@ -408,12 +409,12 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r">Effective HP âˆ’3.7%</span>
+      <span class="chip r">Effective HP −3.7%</span>
       <span class="chip b">HP + shield total +9.1%</span>
-      <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">IW TU shield â†’ 1000</span>
+      <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">IW TU shield → 1000</span>
     </div>
   </div>
-  <p>Slightly less personal HP once the anchor is counted (675â†’650), but the bigger <span class="ab" tabindex="0" data-ab="shield-of-the-seraphim">Seraphim shield</span> puts total mitigation up 9.1% â€” and Invisible Woman on the team pushes it to 1000.</p>
+  <p>Slightly less personal HP once the anchor is counted (675→650), but the bigger <span class="ab" tabindex="0" data-ab="shield-of-the-seraphim">Seraphim shield</span> puts total mitigation up 9.1% — and Invisible Woman on the team pushes it to 1000.</p>
 </div>
 
 <div class="card buff">
@@ -424,7 +425,7 @@
       <span class="chip b" tabindex="0" data-ab="hammer-throw">Hammer Throw +11.1%</span>
       <span class="chip b" tabindex="0" data-ab="hammer-throw">Return hit +25%</span>
       <span class="chip b">Bonus health on hit +50%</span>
-      <span class="chip g">Total pool Â±0% (600)</span>
+      <span class="chip g">Total pool ±0% (600)</span>
     </div>
   </div>
   <p>Damage, sustain, and <span class="ab" tabindex="0" data-ab="storm-surge">Storm Surge</span> mobility all up with no anchor to lose; half his pool converts to self-regenerating shield.</p>
@@ -440,7 +441,7 @@
       <span class="chip b" tabindex="0" data-ab="yancy-street-charge">Charge reliability up</span>
     </div>
   </div>
-  <p>Pure quality-of-life patch: 100â†’150 <span class="ab" tabindex="0" data-ab="stone-haymaker">Haymaker</span> padding, a quicker backswing, and a more forgiving <span class="ab" tabindex="0" data-ab="yancy-street-charge">Yancy Street Charge</span> hitbox.</p>
+  <p>Pure quality-of-life patch: 100→150 <span class="ab" tabindex="0" data-ab="stone-haymaker">Haymaker</span> padding, a quicker backswing, and a more forgiving <span class="ab" tabindex="0" data-ab="yancy-street-charge">Yancy Street Charge</span> hitbox.</p>
 </div>
 
 <div class="card buff">
@@ -449,13 +450,13 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="dual-desert-eagles">Pistols +5.9% / +2.6%</span>
-      <span class="chip b" tabindex="0" data-ab="deadpool-n-your-area">Ally damage taken âˆ’6.3%</span>
+      <span class="chip b" tabindex="0" data-ab="deadpool-n-your-area">Ally damage taken −6.3%</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip g">Total pool Â±0% (500)</span></div>
+    <div class="chips"><span class="chip g">Total pool ±0% (500)</span></div>
   </div>
   <p>Damage and team damage-reduction both improve, and the +50 base HP fully replaces the lost anchor.</p>
 </div>
@@ -466,15 +467,15 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="heavy-blow">Heavy Blow +12.5%</span>
-      <span class="chip r" tabindex="0" data-ab="hulk-smash">Ult frequency âˆ’8.1%</span>
+      <span class="chip r" tabindex="0" data-ab="hulk-smash">Ult frequency −8.1%</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">Total pool âˆ’6.7%</span></div>
+    <div class="chips"><span class="chip r">Total pool −6.7%</span></div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="heavy-blow">Heavy Blow</span> hits harder, but he's down 50 effective HP (750â†’700) and <span class="ab" tabindex="0" data-ab="hulk-smash">Hulk Smash</span> takes 8% longer to build.</p>
+  <p><span class="ab" tabindex="0" data-ab="heavy-blow">Heavy Blow</span> hits harder, but he's down 50 effective HP (750→700) and <span class="ab" tabindex="0" data-ab="hulk-smash">Hulk Smash</span> takes 8% longer to build.</p>
 </div>
 
 <div class="card nerf">
@@ -482,12 +483,12 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r">Total pool âˆ’11.5%</span>
+      <span class="chip r">Total pool −11.5%</span>
       <span class="chip r" tabindex="0" data-ab="defensive-stance">Damage taken in stance +12.5%</span>
-      <span class="chip r" tabindex="0" data-ab="southern-brawl">Southern Brawl âˆ’16.7%</span>
+      <span class="chip r" tabindex="0" data-ab="southern-brawl">Southern Brawl −16.7%</span>
     </div>
   </div>
-  <p>Nerfed on every axis, none of it anchor-related: 75 less total pool, <span class="ab" tabindex="0" data-ab="defensive-stance">Defensive Stance</span> blocks less, and <span class="ab" tabindex="0" data-ab="southern-brawl">Southern Brawl</span>'s bonus damage drops 90â†’75.</p>
+  <p>Nerfed on every axis, none of it anchor-related: 75 less total pool, <span class="ab" tabindex="0" data-ab="defensive-stance">Defensive Stance</span> blocks less, and <span class="ab" tabindex="0" data-ab="southern-brawl">Southern Brawl</span>'s bonus damage drops 90→75.</p>
 </div>
 
 <div class="card nerf">
@@ -495,11 +496,11 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r">Total pool âˆ’9.1%</span>
+      <span class="chip r">Total pool −9.1%</span>
       <span class="chip b">250 HP now self-regens</span>
     </div>
   </div>
-  <p>Down 75 effective HP (825â†’750) once the lost 150-HP anchor is counted, partly offset by a third of his pool now self-regenerating.</p>
+  <p>Down 75 effective HP (825→750) once the lost 150-HP anchor is counted, partly offset by a third of his pool now self-regenerating.</p>
 </div>
 </div>
 
@@ -513,13 +514,13 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="maximum-fortune">Fortune cap +20%</span>
-      <span class="chip g">Total pool Â±0% (275)</span>
+      <span class="chip g">Total pool ±0% (275)</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">All damage âˆ’4.8%</span></div>
+    <div class="chips"><span class="chip r">All damage −4.8%</span></div>
   </div>
   <p>Everything hits 4.8% softer with the anchor gone, traded against a higher <span class="ab" tabindex="0" data-ab="maximum-fortune">Fortune</span> ceiling and a partly self-regenerating pool.</p>
 </div>
@@ -529,26 +530,26 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip g">Total pool Â±0% (275)</span>
+      <span class="chip g">Total pool ±0% (275)</span>
       <span class="chip b">125 HP now self-regens</span>
     </div>
   </div>
-  <p>Damage untouched â€” 125 of his 275 pool just became regenerating shield, a small sustain gain.</p>
+  <p>Damage untouched — 125 of his 275 pool just became regenerating shield, a small sustain gain.</p>
 </div>
 
 <div class="card nerf">
   <div class="top"><h3>Cyclops</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip r" tabindex="0" data-ab="cyclops-mobility">Mobility casts âˆ’20%</span></div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="cyclops-mobility">Mobility casts −20%</span></div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="optic-blast">Optic Blast âˆ’20.0%</span>
-      <span class="chip r" tabindex="0" data-ab="ricochet-force">Ricochet Force âˆ’16.7%</span>
-      <span class="chip r">Other damage âˆ’4.8%</span>
+      <span class="chip r" tabindex="0" data-ab="optic-blast">Optic Blast −20.0%</span>
+      <span class="chip r" tabindex="0" data-ab="ricochet-force">Ricochet Force −16.7%</span>
+      <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
   <p>Hardest-hit hero in the patch: both main damage numbers were cut below even their old un-anchored values, and both movement cooldowns come up 20% less often.</p>
@@ -558,13 +559,13 @@
   <div class="top"><h3>Daredevil</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip g">Total pool Â±0% (300)</span></div>
+    <div class="chips"><span class="chip g">Total pool ±0% (300)</span></div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r">All damage âˆ’4.8%</span>
+      <span class="chip r">All damage −4.8%</span>
       <span class="chip b" tabindex="0" data-ab="adjudication">Punisher TU: his guns restored</span>
     </div>
   </div>
@@ -575,7 +576,7 @@
   <div class="top"><h3>Deadpool <span style="font-weight:400;color:var(--muted)">(Duelist)</span></h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">All damage âˆ’4.8%</span></div>
+    <div class="chips"><span class="chip r">All damage −4.8%</span></div>
   </div>
   <p>Anchor removal only: everything hits 4.8% softer.</p>
 </div>
@@ -586,7 +587,7 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Ammo +50%</span>
-      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix casts âˆ’9.1%</span>
+      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix casts −9.1%</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -604,7 +605,7 @@
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="piercing-arrow">Arrow speed +8.3%</span>
       <span class="chip b" tabindex="0" data-ab="piercing-arrow">Partial-charge damage up</span>
-      <span class="chip g">Max damage Â±0%</span>
+      <span class="chip g">Max damage ±0%</span>
     </div>
   </div>
   <p>Faster arrows and better partial-charge scaling on <span class="ab" tabindex="0" data-ab="piercing-arrow">Piercing Arrow</span> with no anchor to lose; full-charge damage is unchanged.</p>
@@ -623,18 +624,18 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword âˆ’0.6%</span>
-      <span class="chip r">Other damage âˆ’13.0%</span>
+      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword −0.6%</span>
+      <span class="chip r">Other damage −13.0%</span>
     </div>
   </div>
-  <p>Her main shot was rebased almost perfectly (80.5â†’80 effective) and gains 6.5% at max falloff, but unrebased abilities lose the full 13% â€” traded for real mobility in <span class="ab" tabindex="0" data-ab="astral-flock">crow form</span>.</p>
+  <p>Her main shot was rebased almost perfectly (80.5→80 effective) and gains 6.5% at max falloff, but unrebased abilities lose the full 13% — traded for real mobility in <span class="ab" tabindex="0" data-ab="astral-flock">crow form</span>.</p>
 </div>
 
 <div class="card nerf">
   <div class="top"><h3>Human Torch</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip r">All damage âˆ’4.8%</span></div>
+    <div class="chips"><span class="chip r">All damage −4.8%</span></div>
   </div>
   <p>No rebase anywhere, so losing the +5% anchor is a flat 4.8% off everything he does.</p>
 </div>
@@ -644,12 +645,12 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="repulsor-blast">Repulsor field âˆ’14.3% / âˆ’13.4%</span>
-      <span class="chip r" tabindex="0" data-ab="armor-overdrive">Overdrive field âˆ’12.1%</span>
-      <span class="chip r" tabindex="0" data-ab="unibeam">Unibeam âˆ’9.8%</span>
+      <span class="chip r" tabindex="0" data-ab="repulsor-blast">Repulsor field −14.3% / −13.4%</span>
+      <span class="chip r" tabindex="0" data-ab="armor-overdrive">Overdrive field −12.1%</span>
+      <span class="chip r" tabindex="0" data-ab="unibeam">Unibeam −9.8%</span>
     </div>
   </div>
-  <p>Cut below even his un-anchored values across the whole kit â€” a deliberate double nerf of 10â€“14% on everything he fires.</p>
+  <p>Cut below even his un-anchored values across the whole kit — a deliberate double nerf of 10–14% on everything he fires.</p>
 </div>
 
 <div class="card buff">
@@ -668,14 +669,14 @@
   <div class="top"><h3>Moon Knight</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip r" tabindex="0" data-ab="hand-of-khonshu">Ult frequency âˆ’9.7%</span></div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="hand-of-khonshu">Ult frequency −9.7%</span></div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="crescent-dart">Crescent Dart +3.5%</span>
-      <span class="chip r">Other damage âˆ’4.8%</span>
+      <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
   <p><span class="ab" tabindex="0" data-ab="crescent-dart">Darts</span> come out slightly ahead of the anchor loss, but the rest of his kit drops 4.8% and <span class="ab" tabindex="0" data-ab="hand-of-khonshu">Hand of Khonshu</span> charges ~10% slower.</p>
@@ -686,11 +687,11 @@
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="endsong-inferno">Endsong explosion âˆ’2.6%</span>
-      <span class="chip r">Other damage âˆ’9.1%</span>
+      <span class="chip r" tabindex="0" data-ab="endsong-inferno">Endsong explosion −2.6%</span>
+      <span class="chip r">Other damage −9.1%</span>
     </div>
   </div>
-  <p>The 140â†’150 "buff" doesn't cover her lost +10% anchor â€” the <span class="ab" tabindex="0" data-ab="endsong-inferno">Endsong Inferno</span> explosion nets âˆ’2.6% and unrebased damage drops 9.1%.</p>
+  <p>The 140→150 "buff" doesn't cover her lost +10% anchor — the <span class="ab" tabindex="0" data-ab="endsong-inferno">Endsong Inferno</span> explosion nets −2.6% and unrebased damage drops 9.1%.</p>
 </div>
 
 <div class="card buff">
@@ -699,7 +700,7 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Crossbow +8.3%</span>
-      <span class="chip g">Total pool Â±0% (250)</span>
+      <span class="chip g">Total pool ±0% (250)</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -722,7 +723,7 @@
       <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting ends Projection early</span>
     </div>
   </div>
-  <p><span class="ab" tabindex="0" data-ab="dark-seal">Dark Seal</span> is now castable during <span class="ab" tabindex="0" data-ab="mystic-projection">Mystic Projection</span> at the cost of ending the projection â€” flexibility, not raw power.</p>
+  <p><span class="ab" tabindex="0" data-ab="dark-seal">Dark Seal</span> is now castable during <span class="ab" tabindex="0" data-ab="mystic-projection">Mystic Projection</span> at the cost of ending the projection — flexibility, not raw power.</p>
 </div>
 
 <div class="card nerf">
@@ -730,8 +731,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="stellar-shift">Stellar Shift âˆ’25 bonus HP</span>
-      <span class="chip g">Total pool Â±0% (250)</span>
+      <span class="chip r" tabindex="0" data-ab="stellar-shift">Stellar Shift −25 bonus HP</span>
+      <span class="chip g">Total pool ±0% (250)</span>
     </div>
   </div>
   <p>Pool total survives the shield conversion, but <span class="ab" tabindex="0" data-ab="stellar-shift">Stellar Shift</span> losing its 25 on-demand bonus health is an uncompensated dueling nerf.</p>
@@ -743,7 +744,7 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="wind-blade">Wind Blade +3.9%</span>
-      <span class="chip r">Other damage âˆ’4.8%</span>
+      <span class="chip r">Other damage −4.8%</span>
     </div>
   </div>
   <p>Her main damage tool <span class="ab" tabindex="0" data-ab="wind-blade">Wind Blade</span> nets a real 3.9% gain over the lost anchor; everything unrebased slips 4.8%.</p>
@@ -753,23 +754,23 @@
   <div class="top"><h3>The Punisher</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip r" tabindex="0" data-ab="adjudication">Both guns âˆ’5%</span></div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="adjudication">Both guns −5%</span></div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip g">With Daredevil Â±0%</span></div>
+    <div class="chips"><span class="chip g">With Daredevil ±0%</span></div>
   </div>
-  <p>A flat 5% cut to <span class="ab" tabindex="0" data-ab="adjudication">Adjudication</span> and <span class="ab" tabindex="0" data-ab="deliverance">Deliverance</span> that the new Daredevil team-up exactly refunds â€” nerfed solo, neutral when paired.</p>
+  <p>A flat 5% cut to <span class="ab" tabindex="0" data-ab="adjudication">Adjudication</span> and <span class="ab" tabindex="0" data-ab="deliverance">Deliverance</span> that the new Daredevil team-up exactly refunds — nerfed solo, neutral when paired.</p>
 </div>
 </div>
 
 <footer>
-  <strong>Method &amp; sources.</strong> Before-values include the hero's own Team-Up Anchor bonus, which was a permanent always-on passive (confirmed via wiki and guides) â€” so anchor-loss nerfs are unconditional. Same-target boost stacking verified additive via community damage testing; output-vs-received layers multiply. No official stacking formula is published by NetEase. Ability tooltips sourced from marvelrivals.wiki.gg, liquipedia, rivalsmeta, altchar, and fdaytalk, and baked into this page.
+  <strong>Method &amp; sources.</strong> Before-values include the hero's own Team-Up Anchor bonus, which was a permanent always-on passive (confirmed via wiki and guides) — so anchor-loss nerfs are unconditional. Same-target boost stacking verified additive via community damage testing; output-vs-received layers multiply. No official stacking formula is published by NetEase. Ability tooltips sourced from marvelrivals.wiki.gg, liquipedia, rivalsmeta, altchar, and fdaytalk, and baked into this page.
   <ul>
-    <li>Official balance post v20260710 â€” marvelrivals.com (all raw numbers verified against it)</li>
-    <li>DrunkRatt damage-boost testing guide (X, Dec 2024) â€” "damage boosts stack additively"</li>
-    <li>marvelrivals.wiki.gg â€” Buffs &amp; debuffs, hero pages (ability descriptions)</li>
+    <li>Official balance post v20260710 — marvelrivals.com (all raw numbers verified against it)</li>
+    <li>DrunkRatt damage-boost testing guide (X, Dec 2024) — "damage boosts stack additively"</li>
+    <li>marvelrivals.wiki.gg — Buffs &amp; debuffs, hero pages (ability descriptions)</li>
   </ul>
 </footer>
 </div>
@@ -777,7 +778,7 @@
 <div id="tip" role="tooltip"></div>
 
 <div class="editbar" id="editbar">
-  <button id="editToggle" title="Toggle click-to-edit on all text">âœŽ Edit</button>
+  <button id="editToggle" title="Toggle click-to-edit on all text">✎ Edit</button>
   <button id="saveBtn" title="Keep your edits in this browser">Save</button>
   <button id="dlBtn" title="Download your edited copy as HTML">Download</button>
   <button id="resetBtn" title="Discard local edits and restore the original">Reset</button>
@@ -788,14 +789,14 @@
 /* ===== ability tooltip data (fetched from wikis at build time; CSP blocks live calls) ===== */
 var ABILITIES = {
   "cosmic-cluster":{h:"Adam Warlock",n:"Cosmic Cluster",d:"Alternate fire: charges his scepter and releases a burst of up to five fast energy bolts; these bolts can't score headshots.",s:"marvelrivals.wiki.gg"},
-  "quantum-magic":{h:"Adam Warlock",n:"Quantum Magic",d:"His primary fire: hitscan cosmic bolts from the scepter; headshots refund cooldown on his healing ability. The Ultron team-up now raises its ammo capacity 15â†’25.",s:"marvelrivals.wiki.gg"},
+  "quantum-magic":{h:"Adam Warlock",n:"Quantum Magic",d:"His primary fire: hitscan cosmic bolts from the scepter; headshots refund cooldown on his healing ability. The Ultron team-up now raises its ammo capacity 15→25.",s:"marvelrivals.wiki.gg"},
   "spirit-sanctuary":{h:"White Fox",n:"Spirit Sanctuary",d:"Teleports her to a chosen ally, instantly healing allies at the arrival point and raising a brief projectile-blocking barrier.",s:"altchar.com"},
   "kumiho-unleashed":{h:"White Fox",n:"Kumiho Unleashed (Ultimate)",d:"Transforms into her nine-tailed fox melee form with a large bonus health pool; her attacks heal herself and nearby allies, but she can't be healed by others while transformed.",s:"altchar.com"},
   "healing-flower":{h:"Mantis",n:"Healing Flower",d:"Targeted ally heal (~30m, works through barriers) that spends a Life Orb: burst healing plus a heal-over-time that recasting can extend.",s:"marvelrivals.wiki.gg"},
   "natures-favor":{h:"Mantis",n:"Nature's Favor",d:"Her self-sustain passive: consuming Life Orbs heals Mantis over time, plus bonus move speed out of combat. The Adam Warlock team-up strengthens the self-healing rate.",s:"marvelrivals.wiki.gg"},
   "number-one-idol":{h:"Luna Snow",n:"Number One Idol (Passive)",d:"Passive added S5.5: boosts Luna's damage and the healing she receives, and converts a share of the healing she deals into self-healing. This patch removes the damage part and doubles the healing-received part to 20%.",s:"rivalsmeta.com"},
   "idol-aura":{h:"Luna Snow",n:"Share the Stage / Idol Aura",d:"Attaches an Idol Aura to one ally (or herself); the marked ally automatically receives a share (now 40%) of the healing Luna deals to other targets.",s:"marvelrivals.wiki.gg"},
-  "orb-projection":{h:"Invisible Woman",n:"Orb Projection",d:"Primary fire: a psionic orb that flies out and boomerangs back, damaging enemies and healing allies it passes through â€” it can hit the same target on both passes.",s:"marvelrivals.wiki.gg"},
+  "orb-projection":{h:"Invisible Woman",n:"Orb Projection",d:"Primary fire: a psionic orb that flies out and boomerangs back, damaging enemies and healing allies it passes through — it can hit the same target on both passes.",s:"marvelrivals.wiki.gg"},
   "kinetic-cards":{h:"Gambit",n:"Kinetic Cards",d:"Primary fire: throws spreads of kinetically charged cards that damage enemies or heal allies on impact.",s:"marvelrivals.wiki.gg"},
   "repair-mode":{h:"Rocket Raccoon",n:"Repair Mode",d:"Alternate fire: bouncing healing orbs that drift along surfaces, continuously healing all allies near them for several seconds.",s:"marvelrivals.wiki.gg"},
   "cya":{h:"Rocket Raccoon",n:"C.Y.A. (Ultimate)",d:"Cosmic Yarn Amplifier: deploys a destructible device that boosts nearby allies' damage and continuously generates bonus health for them while it stands. Its effect now decays with distance.",s:"marvelrivals.wiki.gg"},
@@ -819,23 +820,23 @@ var ABILITIES = {
   "maximum-fortune":{h:"Black Cat",n:"Maximum Fortune",d:"Her resource cap: hitting enemies builds Fortune up to the cap (now 1200); her abilities spend stored Fortune.",s:"community guides"},
   "optic-blast":{h:"Cyclops",n:"Optic Blast",d:"Primary fire: quick hitscan optic bursts; landing hits speeds up Ricochet Force's recharge.",s:"liquipedia.net"},
   "ricochet-force":{h:"Cyclops",n:"Ricochet Force",d:"An optic beam that diffracts off terrain to track nearby enemies and grants bonus health on use; holds two charges.",s:"liquipedia.net"},
-  "cyclops-mobility":{h:"Cyclops",n:"Propulsion Burst / Optic Ascent",d:"His two movement tools: Propulsion Burst blasts him backward (chargeable, knocks back enemies); Optic Ascent launches him straight up. Both cooldowns went 12sâ†’15s.",s:"thestardustmag.com"},
+  "cyclops-mobility":{h:"Cyclops",n:"Propulsion Burst / Optic Ascent",d:"His two movement tools: Propulsion Burst blasts him backward (chargeable, knocks back enemies); Optic Ascent launches him straight up. Both cooldowns went 12s→15s.",s:"thestardustmag.com"},
   "double-barrel-blaster":{h:"Elsa Bloodstone",n:"Double-Barrel Blaster",d:"Primary fire: hitscan double-barrel shotgun firing pellet bursts from a limited shell capacity (now 12).",s:"marvelrivals.wiki.gg"},
   "helix-advance":{h:"Elsa Bloodstone",n:"Helix Advance",d:"Short omnidirectional dash granting bonus health and chaining into her follow-up attack; cooldown shortens at max Instinct.",s:"marvelrivals.wiki.gg"},
   "piercing-arrow":{h:"Hawkeye",n:"Piercing Arrow",d:"Primary fire: draw-and-release arrow whose damage scales with draw time, up to a very large fully-charged headshot.",s:"marvelrivals.wiki.gg"},
-  "nightsword-thorn":{h:"Hela",n:"Nightsword Thorn",d:"Primary fire: thrown daggers, headshot-capable, from a small magazine â€” her core poke damage. Falloff now bottoms out at 75% at 35m.",s:"marvelrivals.wiki.gg"},
+  "nightsword-thorn":{h:"Hela",n:"Nightsword Thorn",d:"Primary fire: thrown daggers, headshot-capable, from a small magazine — her core poke damage. Falloff now bottoms out at 75% at 35m.",s:"marvelrivals.wiki.gg"},
   "astral-flock":{h:"Hela",n:"Astral Flock",d:"Transforms into a crow for a couple of seconds, damage-immune while flying; this patch makes the flight fully free-directional.",s:"marvelrivals.wiki.gg"},
   "crescent-dart":{h:"Moon Knight",n:"Crescent Dart",d:"Primary fire: crescent blades thrown in sets that ricochet between nearby enemies, losing some damage per bounce.",s:"marvelrivals.wiki.gg"},
   "hand-of-khonshu":{h:"Moon Knight",n:"Hand of Khonshu (Ultimate)",d:"Opens a portal that bombards a targeted zone with rapid talon strikes for several seconds.",s:"marvelrivals.wiki.gg"},
-  "endsong-inferno":{h:"Phoenix",n:"Endsong Inferno (Ultimate)",d:"Rises damage-immune, targets an area, then dives â€” big impact damage plus a shockwave that applies Spark stacks to enemies hit.",s:"marvelrivals.wiki.gg"},
-  "psionic-crossbow":{h:"Psylocke",n:"Psionic Crossbow",d:"Primary fire: spreads of psionic bolts from wrist crossbows, strongest up close. The Cloak & Dagger team-up raises its damage 13â†’14.",s:"marvelrivals.wiki.gg"},
+  "endsong-inferno":{h:"Phoenix",n:"Endsong Inferno (Ultimate)",d:"Rises damage-immune, targets an area, then dives — big impact damage plus a shockwave that applies Spark stacks to enemies hit.",s:"marvelrivals.wiki.gg"},
+  "psionic-crossbow":{h:"Psylocke",n:"Psionic Crossbow",d:"Primary fire: spreads of psionic bolts from wrist crossbows, strongest up close. The Cloak & Dagger team-up raises its damage 13→14.",s:"marvelrivals.wiki.gg"},
   "wing-shurikens":{h:"Psylocke",n:"Wing Shurikens",d:"Throws shurikens that stick to surfaces or enemies, granting her bonus health per hit; reactivate to recall them.",s:"marvelrivals.wiki.gg"},
   "adjudication":{h:"The Punisher",n:"Adjudication",d:"His assault rifle: fast hitscan rounds from a large magazine; auto-reloads while holstered.",s:"marvelrivals.wiki.gg"},
   "deliverance":{h:"The Punisher",n:"Deliverance",d:"His shotgun: semi-auto hitscan pellet blasts, devastating at close range.",s:"marvelrivals.wiki.gg"},
   "dark-seal":{h:"Scarlet Witch",n:"Dark Seal",d:"Launches a chaos orb that creates a stationary sphere which periodically stuns enemies inside; now castable during Mystic Projection.",s:"marvelrivals.wiki.gg"},
   "mystic-projection":{h:"Scarlet Witch",n:"Mystic Projection",d:"Becomes incorporeal for about 2 seconds with free flight and full damage immunity; holds two charges.",s:"marvelrivals.wiki.gg"},
   "stellar-shift":{h:"Star-Lord",n:"Stellar Shift",d:"Quick rocket-boot dodge with a blink of damage immunity that reloads his guns; this patch removes its 25 bonus health.",s:"marvelrivals.wiki.gg"},
-  "wind-blade":{h:"Storm",n:"Wind Blade",d:"Primary fire: piercing wind projectile that passes through enemies â€” no falloff, no headshots; blocked by barriers.",s:"marvelrivals.wiki.gg"},
+  "wind-blade":{h:"Storm",n:"Wind Blade",d:"Primary fire: piercing wind projectile that passes through enemies — no falloff, no headshots; blocked by barriers.",s:"marvelrivals.wiki.gg"},
   "repulsor-blast":{h:"Iron Man",n:"Repulsor Blast",d:"Primary fire: exploding nano-pulse shots with splash damage; every third shot is a stronger dual blast.",s:"marvelrivals.wiki.gg"},
   "unibeam":{h:"Iron Man",n:"Unibeam",d:"Secondary fire: a piercing hitscan chest beam; shares ammo with Repulsor Blast.",s:"marvelrivals.wiki.gg"},
   "armor-overdrive":{h:"Iron Man",n:"Armor Overdrive",d:"Buff state: temporarily boosts Repulsor Blast and Unibeam damage and refreshes his ammo.",s:"marvelrivals.wiki.gg"}
@@ -855,7 +856,7 @@ var ABILITIES = {
     var key = el.getAttribute('data-ab');
     var a = ABILITIES[key];
     if (!a || document.body.classList.contains('editing')) return;
-    tip.innerHTML = '<div class="th">' + a.h + ' Â· ' + a.s + '</div>' +
+    tip.innerHTML = '<div class="th">' + a.h + ' · ' + a.s + '</div>' +
                     '<div class="tn">' + a.n + '</div>' +
                     '<div class="td">' + a.d + '</div>';
     tip.style.display = 'block';
@@ -946,7 +947,7 @@ var ABILITIES = {
       }
     }
   } else {
-    say('Local save unavailable â€” use Download');
+    say('Local save unavailable — use Download');
   }
 
   bar.toggle.addEventListener('click', function(){
@@ -959,9 +960,9 @@ var ABILITIES = {
   });
 
   bar.save.addEventListener('click', function(){
-    if (!ls) { say('Blocked by browser â€” use Download'); return; }
+    if (!ls) { say('Blocked by browser — use Download'); return; }
     try { ls.setItem(KEY, wrap.innerHTML); say('Saved in this browser'); }
-    catch(e){ say('Save failed â€” use Download'); }
+    catch(e){ say('Save failed — use Download'); }
   });
 
   bar.dl.addEventListener('click', function(){
