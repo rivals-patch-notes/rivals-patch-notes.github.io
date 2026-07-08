@@ -62,7 +62,7 @@
   .panel p{margin:0 0 10px; max-width:88ch}
   .panel p:last-child{margin-bottom:0}
   .panel .k{font-family:var(--mono); font-size:13px; background:var(--neut-bg); border:1px solid var(--neut-line); border-radius:4px; padding:1px 6px; white-space:nowrap}
-  .notice{margin:28px 0 0; font-size:13.5px; color:var(--muted); max-width:88ch}
+  .notice{margin:28px auto 0; font-size:27px; line-height:1.4; color:var(--muted); max-width:88ch; text-align:center}
   .notice strong{color:var(--ink)}
   .conv{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px}
   .conv span{font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums; background:var(--nerf-bg); border:1px solid var(--nerf-line); color:var(--nerf); border-radius:999px; padding:3px 11px}
@@ -151,7 +151,7 @@
   <div class="top"><h3>Ultron</h3><span class="verdict b">NET BUFF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip b" tabindex="0" data-ab="imperative-firewall">Imperative drone healing +11.1%</span></div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="imperative-firewall">Imperative: Firewall drones +11.1%</span></div>
   </div>
 </div>
 </div>
@@ -164,14 +164,14 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b">Health +10%</span>
+      <span class="chip b">Health +25 HP</span>
       <span class="chip r" tabindex="0" data-ab="cosmic-cluster">Cosmic Cluster −7.9%</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip b" tabindex="0" data-ab="quantum-magic">Ammo w/ Ultron +66.7%</span></div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="quantum-magic">Quantum Magic ammo w/ Ultron +66.7%</span></div>
   </div>
 </div>
 
@@ -181,8 +181,8 @@
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
       <span class="chip r">General healing −9.1%</span>
-      <span class="chip b" tabindex="0" data-ab="healing-flower">Flower w/ Star-Lord +36.4%</span>
-      <span class="chip b" tabindex="0" data-ab="natures-favor">Self-heal w/ Adam Warlock +27.3%</span>
+      <span class="chip b" tabindex="0" data-ab="healing-flower">Healing Flower w/ Star-Lord +36.4%</span>
+      <span class="chip b" tabindex="0" data-ab="natures-favor">Nature's Favor self-heal w/ Adam Warlock +27.3%</span>
     </div>
   </div>
 </div>
@@ -192,8 +192,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="lightforce-dagger">Dagger hits +8.7%</span>
-      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil −3.4%</span>
+      <span class="chip b" tabindex="0" data-ab="lightforce-dagger">Lightforce Dagger hits +8.7%</span>
+      <span class="chip r" tabindex="0" data-ab="veil-of-lightforce">Veil of Lightforce −3.4%</span>
       <span class="chip r" tabindex="0" data-ab="dagger-storm">Dagger Storm −3.4%</span>
     </div>
   </div>
@@ -215,8 +215,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="spirit-sanctuary">Sanctuary casts −20%</span>
-      <span class="chip b" tabindex="0" data-ab="kumiho-unleashed">Ult health +33.3%</span>
+      <span class="chip r" tabindex="0" data-ab="spirit-sanctuary">Spirit Sanctuary casts −20%</span>
+      <span class="chip b" tabindex="0" data-ab="kumiho-unleashed">Kumiho Unleashed +300 HP</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -231,9 +231,9 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="number-one-idol">Idol damage boost removed</span>
-      <span class="chip b" tabindex="0" data-ab="number-one-idol">Healing received +9.1%</span>
-      <span class="chip r" tabindex="0" data-ab="number-one-idol">Self-heal net −5.1%</span>
+      <span class="chip r" tabindex="0" data-ab="number-one-idol">Number One Idol damage boost removed</span>
+      <span class="chip b" tabindex="0" data-ab="number-one-idol">Number One Idol healing received +9.1%</span>
+      <span class="chip r" tabindex="0" data-ab="number-one-idol">Number One Idol self-heal net −5.1%</span>
       <span class="chip g" tabindex="0" data-ab="idol-aura">Idol Aura share ≈ flat (−0.6%)</span>
     </div>
   </div>
@@ -251,8 +251,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="orb-projection">Orb outgoing −3.4%</span>
-      <span class="chip g" tabindex="0" data-ab="orb-projection">Orb return −0.6%</span>
+      <span class="chip r" tabindex="0" data-ab="orb-projection">Orb Projection outgoing −3.4%</span>
+      <span class="chip g" tabindex="0" data-ab="orb-projection">Orb Projection return −0.6%</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -284,9 +284,9 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="repair-mode">Repair orbs +4.8%</span>
-      <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. frequency −7.0%</span>
-      <span class="chip r" tabindex="0" data-ab="cya">C.Y.A. range falloff added</span>
+      <span class="chip b" tabindex="0" data-ab="repair-mode">Repair Mode orbs +4.8%</span>
+      <span class="chip r" tabindex="0" data-ab="cya">Ult frequency −7.0%</span>
+      <span class="chip r" tabindex="0" data-ab="cya">Ult range falloff added</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -317,9 +317,9 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Crit damage taken −20%</span>
-      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Enemy ult charge off him −7.7%</span>
-      <span class="chip g">Total health pool ±0% (850)</span>
+      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Prehistoric Plating crit damage taken −20%</span>
+      <span class="chip b" tabindex="0" data-ab="prehistoric-plating">Prehistoric Plating enemy ult charge −7.7%</span>
+      <span class="chip g">±0 HP</span>
     </div>
   </div>
 </div>
@@ -329,15 +329,15 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Shield +21.4%</span>
-      <span class="chip r">Effective HP −3.7%</span>
-      <span class="chip b">HP + shield total +9.1%</span>
+      <span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Seraphim shield +150</span>
+      <span class="chip r">−25 HP</span>
+      <span class="chip b">HP + shield total +125</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Shield w/ Invisible Woman → 1000</span></div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="shield-of-the-seraphim">Seraphim shield w/ Invisible Woman → 1000</span></div>
   </div>
 </div>
 
@@ -347,9 +347,9 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="hammer-throw">Hammer Throw +11.1%</span>
-      <span class="chip b" tabindex="0" data-ab="hammer-throw">Return hit +25%</span>
-      <span class="chip b">Bonus health on hit +50%</span>
-      <span class="chip g">Total health pool ±0% (600)</span>
+      <span class="chip b" tabindex="0" data-ab="hammer-throw">Hammer Throw return hit +25%</span>
+      <span class="chip b">Hammer Throw bonus health on hit +25 HP</span>
+      <span class="chip g">±0 HP</span>
     </div>
   </div>
   <p>300 of his 600 total health (50%) is now regenerative shield.</p>
@@ -360,9 +360,9 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="stone-haymaker">Haymaker bonus health +50%</span>
+      <span class="chip b" tabindex="0" data-ab="stone-haymaker">Stone Haymaker bonus health +50 HP</span>
       <span class="chip b" tabindex="0" data-ab="clobberin-time">Faster Clobberin' Time</span>
-      <span class="chip b" tabindex="0" data-ab="yancy-street-charge">Charge reliability up</span>
+      <span class="chip b" tabindex="0" data-ab="yancy-street-charge">Yancy Street Charge reliability up</span>
     </div>
   </div>
 </div>
@@ -372,9 +372,9 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="dual-desert-eagles">Pistols +5.9% / +2.6%</span>
-      <span class="chip b" tabindex="0" data-ab="deadpool-n-your-area">Ally damage taken −6.3%</span>
-      <span class="chip g">Total health pool ±0% (500)</span>
+      <span class="chip b" tabindex="0" data-ab="dual-desert-eagles">Dual Desert Eagles +5.9% / +2.6%</span>
+      <span class="chip b" tabindex="0" data-ab="deadpool-n-your-area">Deadpool N Your Area: ally damage taken −6.3%</span>
+      <span class="chip g">±0 HP</span>
     </div>
   </div>
 </div>
@@ -388,7 +388,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip g">Total health pool ±0% (550)</span></div>
+      <span class="chip g">±0 HP</span></div>
   </div>
   <p>200 of her 550 total health (36.4%) is now regenerative shield.</p>
 </div>
@@ -397,7 +397,7 @@
   <div class="top"><h3>Groot</h3><span class="verdict g">NEUTRAL</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip g">Total health pool ±0% (850)</span></div>
+    <div class="chips"><span class="chip g">±0 HP</span></div>
   </div>
 </div>
 </div>
@@ -410,7 +410,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r">Total health pool −14.3%</span></div>
+      <span class="chip r">−100 HP</span></div>
   </div>
   <p>300 of his 600 total health (50%) is now regenerative shield.</p>
 </div>
@@ -430,7 +430,7 @@
     <div class="chips">
       <span class="chip b" tabindex="0" data-ab="heavy-blow">Heavy Blow +12.5%</span>
       <span class="chip r" tabindex="0" data-ab="hulk-smash">Ult frequency −8.1%</span>
-      <span class="chip r">Total health pool −6.7%</span>
+      <span class="chip r">−50 HP</span>
     </div>
   </div>
   <p>300 of his 700 total health (42.9%) is now regenerative shield.</p>
@@ -441,7 +441,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r">Total health pool −11.5%</span>
+      <span class="chip r">−75 HP</span>
       <span class="chip r" tabindex="0" data-ab="defensive-stance">Damage taken in stance +12.5%</span>
       <span class="chip r" tabindex="0" data-ab="southern-brawl">Southern Brawl −16.7%</span>
     </div>
@@ -454,7 +454,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r">Total health pool −9.1%</span></div>
+      <span class="chip r">−75 HP</span></div>
   </div>
   <p>250 of his 750 total health (33.3%) is now regenerative shield.</p>
 </div>
@@ -470,14 +470,14 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Ammo +50%</span>
-      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix casts −9.1%</span>
+      <span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Double-Barrel ammo +50%</span>
+      <span class="chip r" tabindex="0" data-ab="helix-advance">Helix Advance casts −9.1%</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Pellets w/ Devil Dinosaur +11.1%</span></div>
+    <div class="chips"><span class="chip b" tabindex="0" data-ab="double-barrel-blaster">Double-Barrel pellets w/ Devil Dinosaur +11.1%</span></div>
   </div>
 </div>
 
@@ -486,8 +486,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Arrow speed +8.3%</span>
-      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Partial-charge damage up</span>
+      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Piercing Arrow speed +8.3%</span>
+      <span class="chip b" tabindex="0" data-ab="piercing-arrow">Piercing Arrow partial-charge up</span>
       <span class="chip g">Max damage ±0%</span>
     </div>
   </div>
@@ -498,7 +498,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b">Total health pool +10% (275)</span></div>
+      <span class="chip b">+25 HP</span></div>
   </div>
   <p>125 of her 275 total health (45.5%) is now regenerative shield.</p>
 </div>
@@ -508,16 +508,16 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Crossbow +8.3%</span>
-      <span class="chip g">Total health pool ±0% (250)</span>
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psionic Crossbow +8.3%</span>
+      <span class="chip g">±0 HP</span>
     </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Crossbow w/ Cloak &amp; Dagger +7.7%</span>
-      <span class="chip b" tabindex="0" data-ab="wing-shurikens">Shuriken heal w/ Emma Frost +50%</span>
+      <span class="chip b" tabindex="0" data-ab="psionic-crossbow">Psionic Crossbow w/ Cloak &amp; Dagger +7.7%</span>
+      <span class="chip b" tabindex="0" data-ab="wing-shurikens">Wing Shurikens w/ Emma Frost +5 HP</span>
     </div>
   </div>
   <p>100 of her 250 total health (40%) is now regenerative shield.</p>
@@ -532,8 +532,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="maximum-fortune">Fortune cap +20%</span>
-      <span class="chip g">Total health pool ±0% (275)</span>
+      <span class="chip b" tabindex="0" data-ab="maximum-fortune">Maximum Fortune +20%</span>
+      <span class="chip g">±0 HP</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -549,7 +549,7 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip g">Total health pool ±0% (275)</span></div>
+      <span class="chip g">±0 HP</span></div>
   </div>
   <p>125 of his 275 total health (45.5%) is now regenerative shield.</p>
 </div>
@@ -559,9 +559,9 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword −0.6%</span>
-      <span class="chip b" tabindex="0" data-ab="nightsword-thorn">Max-range damage +6.5%</span>
-      <span class="chip b" tabindex="0" data-ab="astral-flock">Free crow flight</span>
+      <span class="chip g" tabindex="0" data-ab="nightsword-thorn">Nightsword Thorn −0.6%</span>
+      <span class="chip b" tabindex="0" data-ab="nightsword-thorn">Nightsword Thorn max-range +6.5%</span>
+      <span class="chip b" tabindex="0" data-ab="astral-flock">Astral Flock: crow can fly in any direction</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -578,8 +578,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip b" tabindex="0" data-ab="dark-seal">Seal castable in Projection</span>
-      <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting ends Projection early</span>
+      <span class="chip b" tabindex="0" data-ab="dark-seal">Dark Seal castable in Projection</span>
+      <span class="chip g" tabindex="0" data-ab="mystic-projection">Casting it ends Mystic Projection early</span>
     </div>
   </div>
 </div>
@@ -610,7 +610,7 @@
     <div class="chips">
       <span class="chip r" tabindex="0" data-ab="optic-blast">Optic Blast −20.0%</span>
       <span class="chip r" tabindex="0" data-ab="ricochet-force">Ricochet Force −16.7%</span>
-      <span class="chip r" tabindex="0" data-ab="cyclops-mobility">Mobility casts −20%</span>
+      <span class="chip r" tabindex="0" data-ab="cyclops-mobility">Propulsion Burst / Optic Ascent casts −20%</span>
     </div>
   </div>
   <div class="divide"></div>
@@ -626,7 +626,7 @@
   <div class="top"><h3>Daredevil</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip g">Total health pool ±0% (300)</span></div>
+    <div class="chips"><span class="chip g">±0 HP</span></div>
   </div>
   <div class="divide"></div>
   <div class="grp">
@@ -658,8 +658,8 @@
   <div class="grp">
     <div class="glabel">Base kit</div>
     <div class="chips">
-      <span class="chip r" tabindex="0" data-ab="repulsor-blast">Repulsor field −14.3% / −13.4%</span>
-      <span class="chip r" tabindex="0" data-ab="armor-overdrive">Overdrive field −12.1%</span>
+      <span class="chip r" tabindex="0" data-ab="repulsor-blast">Repulsor Blast field −14.3% / −13.4%</span>
+      <span class="chip r" tabindex="0" data-ab="armor-overdrive">Armor Overdrive field −12.1%</span>
       <span class="chip r" tabindex="0" data-ab="unibeam">Unibeam −9.8%</span>
     </div>
   </div>
@@ -687,7 +687,7 @@
   <div class="top"><h3>Phoenix</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip r" tabindex="0" data-ab="endsong-inferno">Endsong explosion −2.6%</span></div>
+    <div class="chips"><span class="chip r" tabindex="0" data-ab="endsong-inferno">Endsong Inferno explosion −2.6%</span></div>
   </div>
   <div class="divide"></div>
   <div class="grp">
@@ -704,7 +704,7 @@
     <div class="glabel">Base kit</div>
     <div class="chips">
       <span class="chip r" tabindex="0" data-ab="stellar-shift">Stellar Shift −25 bonus HP</span>
-      <span class="chip g">Total health pool ±0% (250)</span>
+      <span class="chip g">±0 HP</span>
     </div>
   </div>
   <p>100 of his 250 total health (40%) is now regenerative shield.</p>
@@ -714,12 +714,18 @@
   <div class="top"><h3>The Punisher</h3><span class="verdict r">NET NERF</span></div>
   <div class="grp">
     <div class="glabel">Base kit</div>
-    <div class="chips"><span class="chip r" tabindex="0" data-ab="adjudication">Both guns −5%</span></div>
+    <div class="chips">
+      <span class="chip r" tabindex="0" data-ab="adjudication">Adjudication assault rifle −5%</span>
+      <span class="chip r" tabindex="0" data-ab="deliverance">Deliverance shotgun −5%</span>
+    </div>
   </div>
   <div class="divide"></div>
   <div class="grp">
     <div class="glabel">Anchor &amp; team-ups</div>
-    <div class="chips"><span class="chip g">With Daredevil ±0%</span></div>
+    <div class="chips">
+      <span class="chip g" tabindex="0" data-ab="adjudication">Adjudication reverts to pre-nerf damage w/ Daredevil</span>
+      <span class="chip g" tabindex="0" data-ab="deliverance">Deliverance reverts to pre-nerf damage w/ Daredevil</span>
+    </div>
   </div>
 </div>
 </div>
